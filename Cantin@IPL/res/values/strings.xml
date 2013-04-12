@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cantin@IPL</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="app_version">Versão Demo</string>
+    <string name="hint_login">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="bt_entrar">Entrar</string>
+    <string name="app_activeconnection">Continuar conectado</string>
+    <string name="app_getlogin">Obtenha uma conta &gt;</string>
+
+</resources>
