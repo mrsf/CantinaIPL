@@ -2,12 +2,11 @@ package pt.ipleiria.sas.mobile.cantinaipl;
 
 import java.util.ArrayList;
 
-import pt.ipleiria.sas.mobile.cantinaipl.controller.CanteensListAdapter;
+import pt.ipleiria.sas.mobile.cantinaipl.controller.CanteenListAdapter;
 import pt.ipleiria.sas.mobile.cantinaipl.database.CanteensRepository;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Canteen;
+import pt.ipleiria.sas.mobile.cantinaipl.service.CanteensService;
 import android.app.Activity;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,14 +19,22 @@ public class CanteensActivity extends Activity implements OnItemClickListener {
 	// [REGION] Fields
 
 	private ListView listView;
-	private CanteensListAdapter canteensListAdapter;
+	private CanteenListAdapter canteensListAdapter;
 	private CanteensRepository canteensRepository;
-	private ArrayList<Canteen> canteens;
-	private Cursor canteensCursor;
+	private CanteensService canteensService;
+	private ArrayList<Canteen> canteensList;
 
 	// [ENDREGION] Fields
 
 	// [REGION] Inherited
+
+	public ArrayList<Canteen> getCanteensList() {
+		return canteensList;
+	}
+
+	public void setCanteensList(ArrayList<Canteen> canteensList) {
+		this.canteensList = canteensList;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +45,30 @@ public class CanteensActivity extends Activity implements OnItemClickListener {
 		listView.setOnItemClickListener(this);
 
 		canteensRepository = new CanteensRepository(this, false);
-		canteensRepository.open();
-		canteensRepository.populateTable();
-		canteensRepository.close();
-
+		canteensList = new ArrayList<Canteen>();
+		
 		populateCanteensList();
+		
+		canteensService = new CanteensService(this, canteensRepository, canteensListAdapter);
+
+		//populateCanteensList();
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(android.view.Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+		
+	/*@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return true;
+	}*/
+
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
@@ -58,31 +83,27 @@ public class CanteensActivity extends Activity implements OnItemClickListener {
 
 	// [REGION] Methods
 
-	private void populateCanteensList() {
+	public void populateCanteensList() {
 
-		canteens = new ArrayList<Canteen>();
+		canteensList = new ArrayList<Canteen>();
 
 		canteensRepository.open();
-		canteensCursor = canteensRepository.GetCanteens();
-		if (canteensCursor.moveToFirst()) {
-			do {
-				canteens.add(new Canteen(Integer.parseInt(canteensCursor
-						.getString(0)), canteensCursor.getString(1),
-						canteensCursor.getString(2), canteensCursor
-								.getString(3), canteensCursor.getString(4),
-						canteensCursor.getString(5), Integer
-								.parseInt(canteensCursor.getString(6)), Double
-								.parseDouble(canteensCursor.getString(7)),
-						Double.parseDouble(canteensCursor.getString(8))));
-			} while (canteensCursor.moveToNext());
-		}
+		canteensList = canteensRepository.GetCanteens();
 		canteensRepository.close();
 
-		canteensListAdapter = new CanteensListAdapter(this, canteens);
+		canteensListAdapter = new CanteenListAdapter(this, canteensList);
 		listView.setAdapter(canteensListAdapter);
-		listView.setCacheColorHint(Color.TRANSPARENT);
+		//listView.setCacheColorHint(Color.TRANSPARENT);
 	}
 
 	// [ENDREGION] Methods
+	
+	public CanteensService getCanteensService() {
+		return canteensService;
+	}
+
+	public void setCanteensService(CanteensService canteensService) {
+		this.canteensService = canteensService;
+	}
 
 }

@@ -27,6 +27,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.authentication);
+		
+		EditText userEditText = (EditText) findViewById(R.id.loginEditText);
+		EditText passEditText = (EditText) findViewById(R.id.passwordEditText);
+		userEditText.setText("2091112");
+		passEditText.setText("13225534");
 
 		Button bt = (Button) findViewById(R.id.startButton);
 		bt.setOnClickListener(this);
@@ -49,11 +54,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		authenticationService = new AuthenticationService(user, this);
 	}
 
-	public void testAuthentication(boolean msg) {
-		if (msg == true) {
-			Intent it = new Intent(this, CanteensActivity.class);
+	public void testAuthentication(boolean result, String messenge) {
+		if (result == true) {
+			Toast.makeText(this, messenge, Toast.LENGTH_LONG);
+			Intent it = new Intent(this, MealsActivity.class);
 			this.startActivity(it);
-		} else if (msg == false) {
+		} else if (result == false) {
 			Toast.makeText(this, "Utilizador/Password inválidos.", Toast.LENGTH_LONG).show();
 		}
 		authenticationService = null;

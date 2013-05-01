@@ -10,7 +10,7 @@ public class Canteen {
 	private String lunchHorary;
 	private String dinnerHorary;
 	private String campus;
-	private int photo;
+	private String photoUrl;
 	private double latitude;
 	private double longitude;
 
@@ -23,8 +23,8 @@ public class Canteen {
 	}
 
 	public Canteen(int canteen_id, String name, String address,
-			String lunchHorary, String dinnerHorary, String campus, int photo,
-			double latitude, double longitude) {
+			String lunchHorary, String dinnerHorary, String campus,
+			String photoUrl, double latitude, double longitude) {
 		super();
 		this.canteen_id = canteen_id;
 		this.name = name;
@@ -32,7 +32,7 @@ public class Canteen {
 		this.lunchHorary = lunchHorary;
 		this.dinnerHorary = dinnerHorary;
 		this.campus = campus;
-		this.photo = photo;
+		this.photoUrl = photoUrl;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
@@ -89,12 +89,12 @@ public class Canteen {
 		this.campus = campus;
 	}
 
-	public int getPhoto() {
-		return photo;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 
-	public void setPhoto(int photo) {
-		this.photo = photo;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 
 	public double getLatitude() {

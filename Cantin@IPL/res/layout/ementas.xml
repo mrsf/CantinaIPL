@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/list_text_item_text"
+    android:orientation="vertical"
+    android:weightSum="100" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textViewPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/list_text_item_background"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/list_text_item_text"
+            android:textStyle="italic"
+            android:typeface="monospace" />
+
+    </LinearLayout>
+
+    <pt.ipleiria.sas.mobile.cantinaipl.controller.HorizontalListView
+        android:id="@+id/galleryPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="52"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+    </pt.ipleiria.sas.mobile.cantinaipl.controller.HorizontalListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textViewSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/list_text_item_background"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/list_text_item_text"
+            android:textStyle="italic"
+            android:typeface="monospace" />
+
+    </LinearLayout>
+
+    <pt.ipleiria.sas.mobile.cantinaipl.controller.HorizontalListView
+        android:id="@+id/gallerySecondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="32"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+    </pt.ipleiria.sas.mobile.cantinaipl.controller.HorizontalListView>
+
+</LinearLayout>

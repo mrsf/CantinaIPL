@@ -26,15 +26,15 @@ public abstract class CantinaIplContract {
 
 	public static abstract class CanteenBase implements BaseColumns {
 		public static final String TABLE_NAME = "canteen";
-		public static final String COLUMN_NAME_CANTEEN_ID = "canteenid";
-		public static final String COLUMN_NAME_NAME = "name";
-		public static final String COLUMN_NAME_ADDRESS = "address";
-		public static final String COLUMN_NAME_LUNCHHORARY = "lunchhorary";
-		public static final String COLUMN_NAME_DINNERHORARY = "dinnerhorary";
-		public static final String COLUMN_NAME_CAMPUS = "campus";
-		public static final String COLUMN_NAME_PHOTO = "photo";
-		public static final String COLUMN_NAME_LATITUDE = "latitude";
-		public static final String COLUMN_NAME_LONGITUDE = "longitude";
+		public static final String CANTEEN_ID = "canteenid";
+		public static final String NAME = "name";
+		public static final String ADDRESS = "address";
+		public static final String LUNCH_HORARY = "lunchhorary";
+		public static final String DINNER_HORARY = "dinnerhorary";
+		public static final String CAMPUS = "campus";
+		public static final String PHOTO_URL = "photourl";
+		public static final String LATITUDE = "latitude";
+		public static final String LONGITUDE = "longitude";
 	}
 
 	// [ENDREGION] Table Base Columns Names

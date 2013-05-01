@@ -2,43 +2,48 @@ package pt.ipleiria.sas.mobile.cantinaipl.database;
 
 import java.util.ArrayList;
 
-import pt.ipleiria.sas.mobile.cantinaipl.R;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Canteen;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 
+/**
+ * @author Márcio Francisco and Mário Correia
+ * @version 2013.0430
+ * @since 1.0
+ *
+ */
 public class CanteensRepository extends CantinaIplDBRepository {
 
 	private static final String CREATE_TABLE_CANTEEN = "CREATE TABLE IF NOT EXISTS "
 			+ CantinaIplContract.CanteenBase.TABLE_NAME
 			+ " ("
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_CANTEEN_ID
+			+ CantinaIplContract.CanteenBase.CANTEEN_ID
 			+ CantinaIplContract.PRIMARY_KEY_TYPE
 			+ CantinaIplContract.COMMA_SEP
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_NAME
+			+ CantinaIplContract.CanteenBase.NAME
 			+ CantinaIplContract.TEXT_TYPE
 			+ CantinaIplContract.COMMA_SEP
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_ADDRESS
+			+ CantinaIplContract.CanteenBase.ADDRESS
 			+ CantinaIplContract.TEXT_TYPE
 			+ CantinaIplContract.COMMA_SEP
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_LUNCHHORARY
+			+ CantinaIplContract.CanteenBase.LUNCH_HORARY
 			+ CantinaIplContract.TEXT_TYPE
 			+ CantinaIplContract.COMMA_SEP
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_DINNERHORARY
+			+ CantinaIplContract.CanteenBase.DINNER_HORARY
 			+ CantinaIplContract.TEXT_TYPE
 			+ CantinaIplContract.COMMA_SEP
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_CAMPUS
+			+ CantinaIplContract.CanteenBase.CAMPUS
 			+ CantinaIplContract.TEXT_TYPE
 			+ CantinaIplContract.COMMA_SEP
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_PHOTO
-			+ CantinaIplContract.INTEGER_TYPE
+			+ CantinaIplContract.CanteenBase.PHOTO_URL
+			+ CantinaIplContract.TEXT_TYPE
 			+ CantinaIplContract.COMMA_SEP
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_LATITUDE
+			+ CantinaIplContract.CanteenBase.LATITUDE
 			+ CantinaIplContract.REAL_TYPE
 			+ CantinaIplContract.COMMA_SEP
-			+ CantinaIplContract.CanteenBase.COLUMN_NAME_LONGITUDE
+			+ CantinaIplContract.CanteenBase.LONGITUDE
 			+ CantinaIplContract.REAL_TYPE + ")";
 
 	private static final String DELETE_TABLE_CANTEEN = "DROP TABLE IF EXISTS "
@@ -60,33 +65,31 @@ public class CanteensRepository extends CantinaIplDBRepository {
 		return cursor;
 	}
 
-	public Cursor GetCanteens() {
+	public ArrayList<Canteen> GetCanteens() {
 
+		ArrayList<Canteen> canteens = new ArrayList<Canteen>();
 		Cursor cursor = database().query(
 				"canteen",
 				new String[] { "canteenid", "name", "address", "lunchhorary",
-						"dinnerhorary", "campus", "photo", "latitude",
+						"dinnerhorary", "campus", "photourl", "latitude",
 						"longitude" }, null, null, null, null, "name");
 
 		if (cursor != null) {
 			cursor.moveToFirst();
 		}
-		return cursor;
-	}
 
-	public void populateTable() {
+		if (cursor.moveToFirst()) {
+			do {
+				canteens.add(new Canteen(Integer.parseInt(cursor.getString(0)),
+						cursor.getString(1), cursor.getString(2), cursor
+								.getString(3), cursor.getString(4), cursor
+								.getString(5), cursor.getString(6), Double
+								.parseDouble(cursor.getString(7)), Double
+								.parseDouble(cursor.getString(8))));
+			} while (cursor.moveToNext());
+		}
 
-		ArrayList<Canteen> dbCanteens = new ArrayList<Canteen>();
-
-		dbCanteens.add(new Canteen(1, "Cantina1", "ESECS", "13h-14h",
-				"20h-21h", "Campus1", R.drawable.cipl_logo, 30.5, 8.2));
-		dbCanteens.add(new Canteen(2, "Cantina2", "ESSLEI", "13h-14h",
-				"20h-21h", "Campus2", R.drawable.cipl_logo, 30.5, 8.3));
-		dbCanteens.add(new Canteen(3, "Cantina3", "ESTG", "13h-14h",
-				"encerrada", "Campus2", R.drawable.cipl_logo, 30.5, 8.4));
-
-		InsertCanteens(dbCanteens);
-
+		return canteens;
 	}
 
 	public void InsertCanteens(ArrayList<Canteen> canteens) {
@@ -107,7 +110,7 @@ public class CanteensRepository extends CantinaIplDBRepository {
 		values.put("lunchhorary", canteen.getLunchHorary());
 		values.put("dinnerhorary", canteen.getDinnerHorary());
 		values.put("campus", canteen.getCampus());
-		values.put("photo", canteen.getPhoto());
+		values.put("photourl", canteen.getPhotoUrl());
 		values.put("latitude", canteen.getLatitude());
 		values.put("longitude", canteen.getLongitude());
 		return database().insert("canteen", null, values);

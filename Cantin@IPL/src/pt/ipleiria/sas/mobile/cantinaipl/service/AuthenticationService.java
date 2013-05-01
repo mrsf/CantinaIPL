@@ -24,7 +24,7 @@ import pt.ipleiria.sas.mobile.cantinaipl.model.User;
 public class AuthenticationService {
 
 	private static final String TAG = "JSON";
-	private static final String SERVICE_URL = "http://192.168.246.25/LdapService.svc";
+	private static final String SERVICE_URL = "http://25.42.150.3/CantinaIplService.svc";
 
 	public AuthenticationService(User user, Context context) {
 		new ReadJsonDataTask(context).execute(SERVICE_URL
@@ -84,7 +84,7 @@ public class AuthenticationService {
 
 					MainActivity mainActivity = (MainActivity) context;
 					mainActivity.testAuthentication(jsonObject
-							.getBoolean("Result"));
+							.getBoolean("Result"), jsonObject.getString("Messenge"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
