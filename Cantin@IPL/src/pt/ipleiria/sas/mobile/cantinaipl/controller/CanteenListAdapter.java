@@ -4,12 +4,13 @@ import java.util.List;
 
 import pt.ipleiria.sas.mobile.cantinaipl.R;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Canteen;
-
+import pt.ipleiria.sas.mobile.cantinaipl.thread.ImageDownloader;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -26,7 +27,9 @@ public class CanteenListAdapter extends BaseAdapter {
 
 	private Context context;
 	private List<Canteen> canteenList;
-	private ImagesManager imagesManager;
+	//private ImagesManager imagesManager;
+	private ImageDownloader downloader;
+	private SynchronizedDownloadList downloadList;
 
 	// [ENDREGION] Fields
 
@@ -36,7 +39,9 @@ public class CanteenListAdapter extends BaseAdapter {
 		super();
 		this.context = context;
 		this.canteenList = canteensList;
-		this.imagesManager = new ImagesManager();
+		downloader=downloader=new ImageDownloader();
+		downloadList=new SynchronizedDownloadList();
+		//this.imagesManager = new ImagesManager();
 	}
 
 	// [ENDREGION] Constructors
@@ -61,10 +66,18 @@ public class CanteenListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Canteen canteen = canteenList.get(position);
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		convertView = inflater.inflate(R.layout.item_cantinas, null);
-
+		
+		if (convertView!=null) {
+			downloadList.removeDownloadTaskByImageView((ImageView)convertView.findViewById(R.id.imageViewCantina));
+		}
+		
+		if (convertView==null) {
+			LayoutInflater inflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = inflater.inflate(R.layout.item_cantinas, null);
+		}
+		
+		
 		((TextView) convertView.findViewById(R.id.textViewNome))
 				.setText(canteen.getName());
 		((TextView) convertView.findViewById(R.id.textViewCampus))
@@ -72,20 +85,43 @@ public class CanteenListAdapter extends BaseAdapter {
 		((TextView) convertView.findViewById(R.id.textViewAddress))
 				.setText(canteen.getAddress());
 
-		if (!imagesManager.getImagesHashMap()
-				.containsKey(canteen.getPhotoUrl())) {
-			// imagesManager.NotifyThread(canteen.getPhotoUrl());
-			imagesManager.NotifyThread(canteenList.get(0).getPhotoUrl(),
-					canteenList.get(1).getPhotoUrl(), canteenList.get(2)
-							.getPhotoUrl());
-			imagesManager.getImagesList().add(canteen.getPhotoUrl());
+		ImageView imageView = (ImageView) convertView
+				.findViewById(R.id.imageViewCantina);
+		
+		// Verificar se existe na cache
+		// se existir
+		  // Vai buscar
+		// caso contrário
+		{
+			imageView.setImageResource(R.drawable.food_espetadas); // Loading image
+			
+			try {
+				downloadList.addDownloadTask(new DownloadTask(canteen.getPhotoUrl(), imageView));
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if (downloader.isFinished()) {
+				
+				downloader.execute(downloadList);
+			}
 		}
+		
+		
 
-		/*
-		 * ((ImageView) convertView.findViewById(R.id.imageViewCantina))
-		 * .setImageBitmap(imagesManager.getImagesHashMap().get(
-		 * canteen.getPhotoUrl()));
-		 */
+		/*if (!imagesManager.getImagesHashMap()
+				.containsKey(canteen.getPhotoUrl())) {
+			imagesManager.getImagesList().add(canteen.getPhotoUrl());
+			try {
+				imagesManager.getImageViewBuffer().putImageView(imageView);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		} else {
+			imageView.setImageBitmap(imagesManager.getImagesHashMap().get(
+					canteen.getPhotoUrl()));
+		}*/
 
 		return convertView;
 	}
@@ -109,7 +145,7 @@ public class CanteenListAdapter extends BaseAdapter {
 	public void setCanteenList(List<Canteen> canteenList) {
 		this.canteenList = canteenList;
 	}
-
+/*
 	public ImagesManager getImagesManager() {
 		return imagesManager;
 	}
@@ -117,7 +153,7 @@ public class CanteenListAdapter extends BaseAdapter {
 	public void setImagesManager(ImagesManager imagesManager) {
 		this.imagesManager = imagesManager;
 	}
-
+*/
 	// [ENDREGION] Properties
 
 }

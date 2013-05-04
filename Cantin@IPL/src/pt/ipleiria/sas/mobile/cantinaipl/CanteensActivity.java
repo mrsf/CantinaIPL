@@ -6,6 +6,7 @@ import pt.ipleiria.sas.mobile.cantinaipl.controller.CanteenListAdapter;
 import pt.ipleiria.sas.mobile.cantinaipl.database.CanteensRepository;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Canteen;
 import pt.ipleiria.sas.mobile.cantinaipl.service.CanteensService;
+import pt.ipleiria.sas.mobile.cantinaipl.thread.ImageViewProducer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class CanteensActivity extends Activity implements OnItemClickListener {
 	private CanteensRepository canteensRepository;
 	private CanteensService canteensService;
 	private ArrayList<Canteen> canteensList;
+	private ImageViewProducer imageViewProducer;
 
 	// [ENDREGION] Fields
 
