@@ -1,0 +1,12 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="actionbar_color">#631410</color>
+    <color name="actionbar_font_color">#FFFFFF</color>
+    <color name="canteen_list_color">#B2735C</color>
+    <color name="red_ipl">#991426</color>
+    <color name="white_overlay">#99FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red_ipl_overlay">#66991426</color>
+
+</resources>

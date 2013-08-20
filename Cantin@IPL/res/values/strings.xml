@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cantin@IPL</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_canteens">Cantinas</string>
+    <string name="action_settings">Configurações</string>
+    <string name="action_reserves">Reservas</string>
+    <string name="action_account">Conta</string>
+    <string name="action_update">Actualizar</string>
+    <string name="action_search">Procurar</string>
+    <string name="title_activity_meals">Ementa</string>
+    <string name="title_activity_meal_details">Refeição</string>
+    <string name="title_activity_search">Procura</string>
+
+    <!-- The label for use as a searchable item -->
+    <string name="search_label">Refeições</string>
+
+    <!-- The hint text that appears in the search box. -->
+    <string name="search_hint">Procurar Refeição</string>
+
+    <!-- The description that will show up in the search settings for this source. -->
+    <string name="settings_description">Encontrar uma refeição.</string>
+    <string name="title_activity_account">Conta</string>
+    <string name="title_activity_reserves">Reservas</string>
+    <string name="title_activity_reserve_details">Senha</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="app_notification">Notificação Cantin@IPL</string>
+
+</resources>

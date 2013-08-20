@@ -1,0 +1,220 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserActivity" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin" >
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tv_user_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/user_note"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/red_ipl" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp" >
+
+            <EditText
+                android:id="@+id/et_user_name"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="#00FFFFFF"
+                android:ems="10"
+                android:hint="@string/prompt_name"
+                android:paddingLeft="12dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp" >
+
+            <EditText
+                android:id="@+id/et_user_course"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="#00FFFFFF"
+                android:ems="10"
+                android:hint="@string/prompt_course"
+                android:paddingLeft="12dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp" >
+
+            <EditText
+                android:id="@+id/et_user_number"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="#00FFFFFF"
+                android:ems="10"
+                android:hint="@string/prompt_number"
+                android:inputType="number"
+                android:paddingLeft="12dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp" >
+
+            <EditText
+                android:id="@+id/et_user_school"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="#00FFFFFF"
+                android:ems="10"
+                android:hint="@string/prompt_school"
+                android:paddingLeft="12dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp" >
+
+            <EditText
+                android:id="@+id/et_user_bi"
+                android:layout_width="286dp"
+                android:layout_height="47dp"
+                android:background="@drawable/edit_background"
+                android:ems="10"
+                android:hint="@string/prompt_bi"
+                android:inputType="number"
+                android:maxLength="8"
+                android:paddingBottom="5dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black_overlay" >
+
+                <requestFocus />
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp" >
+
+            <EditText
+                android:id="@+id/et_user_nif"
+                android:layout_width="286dp"
+                android:layout_height="47dp"
+                android:background="@drawable/edit_background"
+                android:ems="10"
+                android:hint="@string/prompt_nif"
+                android:inputType="number"
+                android:maxLength="9"
+                android:paddingBottom="5dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black_overlay" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp" >
+
+            <RadioGroup
+                android:id="@+id/rg_user_regime"
+                android:layout_width="286dp"
+                android:layout_height="47dp"
+                android:background="@drawable/edit_background"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingTop="5dp" >
+
+                <TextView
+                    android:id="@+id/tv_regime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radiog_regime_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black_overlay" />
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/radiog_pos_0"
+                    android:textColor="@color/black_overlay" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radiog_pos_1"
+                    android:textColor="@color/black_overlay" />
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/bt_user_confirmation"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/action_confirmation"
+                android:textColor="@color/black" />
+
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

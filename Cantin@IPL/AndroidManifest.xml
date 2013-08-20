@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pt.ipleiria.sas.mobile.cantinaipl"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="pt.ipleiria.sas.mobile.cantinaipl.CantinaIplApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher_cantinaipl"
+        android:label="@string/app_name"
+        android:logo="@drawable/ic_menu_cantinaipl"
+        android:theme="@style/Theme.Sherlock.Light.DarkActionBar" >
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.NotifyMessage"
+            android:label="@string/app_notification"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.SettingsActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.AuthenticationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.CanteensActivity"
+            android:label="@string/title_activity_canteens"
+            android:launchMode="singleTop" >
+
+            <!-- Receives the search request. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <!-- No category needed, because the Intent will specify this class component -->
+            </intent-filter>
+            <!-- Points to searchable meta data. -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.MealsActivity"
+            android:label="@string/title_activity_meals"
+            android:launchMode="singleTop" >
+
+            <!-- Receives the search request. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <!-- No category needed, because the Intent will specify this class component -->
+            </intent-filter>
+            <!-- Points to searchable meta data. -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.UserActivity"
+            android:label="@string/title_activity_user" >
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.MealDetailsActivity"
+            android:label="@string/title_activity_meal_details"
+            android:launchMode="singleTop" >
+
+            <!-- Receives the search request. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <!-- No category needed, because the Intent will specify this class component -->
+            </intent-filter>
+            <!-- Points to searchable meta data. -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:launchMode="singleTop" >
+
+            <!-- Receives the search request. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <!-- No category needed, because the Intent will specify this class component -->
+            </intent-filter>
+
+            <!-- Points to searchable meta data. -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.AccountActivity"
+            android:label="@string/title_activity_account" >
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.ReservesActivity"
+            android:label="@string/title_activity_reserves" >
+        </activity>
+        <activity
+            android:name="pt.ipleiria.sas.mobile.cantinaipl.ReserveDetailsActivity"
+            android:label="@string/title_activity_reserve_details" >
+        </activity>
+    </application>
+
+</manifest>

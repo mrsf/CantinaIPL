@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- List -->
+    <string name="image_descricao_eliminar_reservas_reservas">Eliminar reservas</string>
+    <string name="label_eliminar_reservas_reservas">Eliminar todas</string>
+
+    <!-- Item -->
+    <string name="text_id_reserva_reserva">Id</string>
+    <string name="label_prato_reservas">Prato Carne/Peixe</string>
+    <string name="label_sopa_reservas">Sopa</string>
+    <string name="label_sobremesa_reservas">Sobremesa</string>
+    <string name="text_prato_reservas">nome do prato carne/peixe</string>
+    <string name="text_sopa_reservas">nome da sopa</string>
+    <string name="text_sobremesa_reservas">Doce|Yougurte|Fruta</string>
+    <string name="text_data_reservas">data</string>
+    <string name="text_preco_reservas">00.00 €</string>
+    <string name="image_descrition_prato_reservas">imagePratoSenhas</string>
+    <string name="button_text_anular_reservas">Anular</string>
+    <string name="text_refeicao_reservas">Refeicao</string>
+    <string name="text_cantina_reservas">Cantina</string>
+
+</resources>

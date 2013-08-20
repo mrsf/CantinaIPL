@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prompt_name">Nome</string>
+    <string name="prompt_course">Curso</string>
+    <string name="prompt_number">Número</string>
+    <string name="prompt_school">Escola</string>
+    <string name="prompt_bi">B.I.</string>
+    <string name="prompt_nif">N.I.F.</string>
+    <string name="prompt_photo">Foto</string>
+    <string name="action_confirmation">Confirmar</string>
+    <string name="radiog_regime_title">Regime: </string>
+    <string name="radiog_pos_0">Diurno</string>
+    <string name="radiog_pos_1">Pós-Laboral</string>
+    <string name="title_activity_user">Confirmar Dados</string>
+    <string name="user_note">Nota: De futuro, para alterar estes dados, terá de contatar o SAS.</string>
+    
+</resources>

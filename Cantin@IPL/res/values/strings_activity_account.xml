@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="label_dados_pessoais_conta">Dados Pessoais</string>
+    <string name="label_saldo_conta">saldo €</string>
+    <string name="label_numero_conta">Número: </string>
+    <string name="label_nome_conta">Nome: </string>
+    <string name="label_curso_conta">Curso: </string>
+    <string name="label_tipo_conta">Tipo: </string>
+    <string name="label_email_conta">e-mail: </string>
+    <string name="label_nif_conta">Nif: </string>
+    <string name="text_view_saldo_conta">0,00</string>
+    <string name="text_view_numero_conta">0000000</string>
+    <string name="text_view_nome_conta">xxxxx xxxxx xxxxx xxxxxxxx</string>
+    <string name="text_view_area_conta">xxx. xxxxxxxxxxxxx</string>
+    <string name="text_view_tipo_conta">xxxxxxxxx</string>
+    <string name="text_view_email_conta">0000000@ipleiria.pt</string>
+    <string name="text_view_nif_conta">00000000</string>
+    <string name="label_entidade_conta">Entidade</string>
+    <string name="label_referencia_conta">Referência</string>
+    <string name="label_montante_conta">Montante</string>
+    <string name="label_5euros_conta">5,00 €</string>
+    <string name="label_10euros_conta">10,00 €</string>
+    <string name="label_20euros_conta">20,00 €</string>
+    <string name="label_50euros_conta">50,00 €</string>
+    <string name="label_100euros_conta">100,00 €</string>
+    <string name="hint_outro_valor_conta">outro</string>
+    <string name="text_view_entidade_conta">00000</string>
+    <string name="text_view_referencia_conta">000 000 000</string>
+    <string name="text_view_montante_conta">00,00 €</string>
+    <string name="button_description_mb_conta">mb</string>
+    <string name="button_description_faturas_conta">faturas</string>
+    <string name="button_description_senhas_conta">senhas</string>
+    <string name="label_senhas_icon_conta">Senhas</string>
+    <string name="button_label_devolucao_conta">PEDIR DEVOLUÇÃO DO DINHEIRO</string>
+    <string name="label_faturas_icon_conta">Faturas</string>
+    <string name="image_button_mb_conta">button mb image</string>
+    <string name="label_carregar_conta_conta">Carregar Saldo da Conta</string>
+    <string name="label_data_conta">Data Expiração</string>
+    <string name="text_data_conta">01/01/2013</string>
+
+</resources>

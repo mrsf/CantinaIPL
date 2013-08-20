@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="image_descricao_prato_prato">Imagem do prato</string>
+    <string name="image_descricao_sopa_prato">Imagem do prato</string>
+    <string name="label_prato_prato">Prato</string>
+    <string name="text_descricao_prato_prato">couves cebolas tomate, ervilhas, pepino, batata, favas, .....</string>
+    <string name="text_preco_prato_prato">0,00 €</string>
+    <string name="label_sopa_prato">Sopa</string>
+    <string name="text_descricao_sopa_prato">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
+    <string name="text_preco_sopa_prato">0,00 €</string>
+    <string name="label_sobremesa_prato">Sobremesa</string>
+    <string name="text_descricao_sobremesa_prato">xxxxxxx|xxxxxxx|xxxxxxx</string>
+    <string name="text_preco_sobremesa_prato">0,00 €</string>
+    <string name="text_preco_total_prato">0,00 €</string>
+    <string name="image_button_descrition_mb_prato">imageButtonMbPrato</string>
+    <string name="image_button_descrition_senha_prato">imageButtonSenhaPrato</string>
+    <string name="label_icon_carregar_conta_prato">Carregar conta</string>
+    <string name="label_icon_comprar_senha_prato">Comprar senha</string>
+
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_meal_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/iv_meal_image"
+            android:layout_width="320dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/canteen_card"
+            android:contentDescription="@string/app_name"
+            android:cropToPadding="true"
+            android:paddingBottom="16dp"
+            android:paddingLeft="9dp"
+            android:paddingRight="14dp"
+            android:paddingTop="9dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cipl_background" />
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/iv_meal_image"
+            android:layout_alignRight="@id/iv_meal_image"
+            android:layout_alignTop="@id/iv_meal_image"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginTop="9dp" >
+
+            <TextView
+                android:id="@+id/tv_meal_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/app_name"
+                android:textAppearance="@style/GreyMediumText"
+                android:textColor="@color/actionbar_font_color" />
+
+            <RatingBar
+                android:id="@+id/rb_meal_rating"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_meal_image"
+            android:layout_alignLeft="@id/iv_meal_image"
+            android:layout_alignRight="@id/iv_meal_image"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="14dp"
+            android:background="@color/white_overlay" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_meal_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/RedMediumText"
+                    android:textColor="@color/actionbar_color" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_meal_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/RedSmalText"
+                    android:textColor="@color/actionbar_color" />
+            </TableRow>
+        </TableLayout>
+
+        <FrameLayout
+            android:id="@+id/meal_loading"
+            android:layout_width="320dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="16dp"
+            android:paddingLeft="9dp"
+            android:paddingRight="14dp"
+            android:paddingTop="9dp" >
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</LinearLayout>

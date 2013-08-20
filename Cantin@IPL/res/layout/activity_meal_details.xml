@@ -1,0 +1,373 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MealDetailsActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp" >
+
+            <ImageView
+                android:id="@+id/imagePratoPrato"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentTop="false"
+                android:contentDescription="@string/image_descricao_prato_prato"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/food" />
+
+            <FrameLayout
+                android:id="@+id/primary_dish_load"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentTop="false"
+                android:background="@color/black_overlay" >
+
+                <ProgressBar
+                    android:id="@+id/progressBar1"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/image_border" >
+
+                <ImageView
+                    android:id="@+id/iv_search_meal_photo"
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="@string/image_descricao_sopa_prato"
+                    android:cropToPadding="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/sopa1" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/secondary_dish_load"
+                android:layout_width="90dp"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="17dp"
+                android:background="@color/black_overlay" >
+
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/labelNomePratoPrato"
+                    style="@style/RedMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_prato_prato" />
+
+                <TextView
+                    android:id="@+id/textDescricaoPratoPrato"
+                    style="@style/GreyMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_descricao_prato_prato" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textPrecoPratoPrato"
+                    style="@style/RedMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/text_preco_prato_prato" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButtonPratoPrato"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:defaultValue="true"
+                    android:textAppearance="@style/TextGreySmal"
+                    android:textColor="@color/black"
+                    android:textOff="Não"
+                    android:textOn="Sim" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@drawable/horizontal_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/labelSopaPrato"
+                    style="@style/RedMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_sopa_prato" />
+
+                <TextView
+                    android:id="@+id/textDescricaoSopaPrato"
+                    style="@style/GreyMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_descricao_sopa_prato" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textPrecoSopaPrato"
+                    style="@style/RedMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/text_preco_sopa_prato" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButtonSopaPrato"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/TextGreySmal"
+                    android:textColor="@color/black"
+                    android:textOff="Não"
+                    android:textOn="Sim" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@drawable/horizontal_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/labelSobremesaPrato"
+                    style="@style/RedMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_sobremesa_prato" />
+
+                <TextView
+                    android:id="@+id/textDescricaoSobremesaPrato"
+                    style="@style/GreyMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_descricao_sobremesa_prato" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textPrecoSobremesaPrato"
+                    style="@style/RedMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_weight="2"
+                    android:text="@string/text_preco_sobremesa_prato" />
+
+                <ToggleButton
+                    android:id="@+id/toogleButtonSobremesaPrato"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="2"
+                    android:textAppearance="@style/TextGreySmal"
+                    android:textColor="@color/black"
+                    android:textOff="Não"
+                    android:textOn="Sim" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical" >
+
+            <TextView
+                android:id="@+id/textPrecoTotalPrato"
+                style="@style/RedBigText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_preco_total_prato" />
+        </TableRow>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="5dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/red_ipl" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end" >
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="25dp"
+                android:layout_height="fill_parent" />
+
+            <ImageButton
+                android:id="@+id/imageButtonFaturas_conta"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="@string/image_button_descrition_mb_prato"
+                android:onClick="onClickConta"
+                android:src="@drawable/ic_menu_friendslist" />
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="25dp"
+                android:layout_height="fill_parent" />
+
+            <View
+                android:id="@+id/view10"
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/red_ipl" />
+
+            <View
+                android:id="@+id/view11"
+                android:layout_width="25dp"
+                android:layout_height="fill_parent" />
+
+            <ImageButton
+                android:id="@+id/imageButtonComprarSenhaPrato"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="@string/image_button_descrition_senha_prato"
+                android:onClick="onClickComprarSenha"
+                android:src="@drawable/senha" />
+
+            <View
+                android:id="@+id/view12"
+                android:layout_width="25dp"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view13"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textViewLabelIconCarregarConta"
+                style="@style/GreyMediumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                android:text="@string/label_icon_carregar_conta_prato" />
+
+            <TextView
+                android:id="@+id/textViewLabelIconComprarSenha"
+                style="@style/GreyMediumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                android:text="@string/label_icon_comprar_senha_prato" />
+        </TableRow>
+    </LinearLayout>
+
+</ScrollView>

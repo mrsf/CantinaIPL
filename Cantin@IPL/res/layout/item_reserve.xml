@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageRefeicaoReservas"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:contentDescription="@string/image_descrition_prato_reservas"
+            android:paddingLeft="6dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/sopa1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/labelIdReservas"
+            style="@style/RedSmalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_id_reserva_reserva" />
+
+        <TextView
+            android:id="@+id/labelPratoReservas"
+            style="@style/GreyMediumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_prato_reservas" />
+
+        <TextView
+            android:id="@+id/textPratoReservas"
+            style="@style/RedSmalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_prato_reservas" />
+
+        <TextView
+            android:id="@+id/labelSopaReservas"
+            style="@style/GreyMediumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_sopa_reservas" />
+
+        <TextView
+            android:id="@+id/textSopaReservas"
+            style="@style/RedSmalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_sopa_reservas" />
+
+        <TextView
+            android:id="@+id/labelSobremesaReservas"
+            style="@style/GreyMediumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_sobremesa_reservas" />
+
+        <TextView
+            android:id="@+id/textSobremesaReservas"
+            style="@style/RedSmalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_sobremesa_reservas" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/labelDataReservas"
+            style="@style/RedMediumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/text_data_reservas" />
+
+        <TextView
+            android:id="@+id/textRefeicaoReservas"
+            style="@style/RedSmalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/text_refeicao_reservas" />
+
+        <TextView
+            android:id="@+id/labelCantinaReservas"
+            style="@style/TextGreySmal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/text_cantina_reservas" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/textPrecoReservas"
+            style="@style/RedMediumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/text_preco_reservas" />
+
+        <Button
+            android:id="@+id/buttonAnularReservaReserva"
+            style="@style/GreyMediumText"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:focusable="false"
+            android:onClick="removeReservaOnClickHandler"
+            android:text="@string/button_text_anular_reservas" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/canteen_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/canteen_image"
+        android:layout_width="295dp"
+        android:layout_height="168dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/canteen_card"
+        android:contentDescription="@string/app_name"
+        android:cropToPadding="true"
+        android:paddingBottom="11dp"
+        android:paddingLeft="9dp"
+        android:paddingRight="13dp"
+        android:paddingTop="7dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cipl_background" />
+
+    <TextView
+        android:id="@+id/canteen_name"
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/canteen_image"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="7dp"
+        android:text="@string/app_name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/actionbar_font_color" />
+
+    <TableLayout
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/canteen_image"
+        android:layout_alignLeft="@+id/canteen_image"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="9dp"
+        android:background="@color/white_overlay" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/canteen_campus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/actionbar_color" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/canteen_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/actionbar_color" />
+        </TableRow>
+    </TableLayout>
+
+    <FrameLayout
+        android:id="@+id/canteen_loading"
+        android:layout_width="295dp"
+        android:layout_height="168dp"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="11dp"
+        android:paddingLeft="9dp"
+        android:paddingRight="13dp"
+        android:paddingTop="7dp" >
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal" />
+    </FrameLayout>
+
+</RelativeLayout>

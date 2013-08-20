@@ -1,0 +1,159 @@
+package pt.ipleiria.sas.mobile.cantinaipl.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+/**
+ * <b>Model class to store a dish.</b>
+ * 
+ * <p>
+ * This class, allows dish data storing. Accessing this class, your data can be
+ * used for other classes. It is a parcelable class. A dish is associate to a
+ * meal.
+ * </p>
+ * 
+ * @author Márcio Francisco and Mário Correia
+ * @version 2013.0612
+ * @since 1.0
+ * 
+ */
+public class Dish implements Parcelable {
+
+	// [REGION] Fields
+
+	private int id;
+	private String photo;
+	private String description;
+	private String name;
+	private double price;
+	private String type;
+	private double rating;
+
+	// [ENDREGION] Fields
+
+	// [REGION] Constructors
+
+	public Dish(int id, String photo, String description, String name,
+			double price, String type, double rating) {
+		this.id = id;
+		this.photo = photo;
+		this.description = description;
+		this.name = name;
+		this.price = price;
+		this.type = type;
+		this.rating = rating;
+	}
+
+	public Dish(Parcel in) {
+		this.readFromParcel(in);
+	}
+
+	public Dish() {
+	}
+
+	// [ENDREGION] Constructors
+
+	// [REGION] GetAndSet_Methods
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
+	// [ENDREGION] GetAndSet_Methods
+
+	// [REGION] Parcelable_Code
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(this.id);
+		dest.writeString(this.photo);
+		dest.writeString(this.description);
+		dest.writeString(this.name);
+		dest.writeDouble(this.price);
+		dest.writeString(this.type);
+		dest.writeDouble(this.rating);
+	}
+
+	private void readFromParcel(Parcel in) {
+		this.id = in.readInt();
+		this.photo = in.readString();
+		this.description = in.readString();
+		this.name = in.readString();
+		this.price = in.readDouble();
+		this.type = in.readString();
+		this.rating = in.readDouble();
+	}
+
+	public static final Parcelable.Creator<Dish> CREATOR = new Parcelable.Creator<Dish>() {
+
+		@Override
+		public Dish createFromParcel(Parcel source) {
+			return new Dish(source);
+		}
+
+		@Override
+		public Dish[] newArray(int size) {
+			return new Dish[size];
+		}
+	};
+
+	// [ENDREGION] Parcelable_Code
+
+}

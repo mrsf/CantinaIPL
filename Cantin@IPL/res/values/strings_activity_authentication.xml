@@ -1,0 +1,19 @@
+<resources>
+
+    <string name="title_activity_authentication">Cantin@IPL - Autenticação</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_login">Login</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_register"><b>Sign in</b> or register</string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="action_exit_title">Sair</string>
+    <string name="login_progress_signing_in">Signing in&#8230;</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">Credenciais Inválidas.</string>
+    <string name="error_password_required">Preencher a Password.</string>
+    <string name="error_login_required">Preencher o Login.</string>
+    <string name="check_memorize">Memorizar-me</string>
+
+</resources>

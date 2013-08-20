@@ -1,0 +1,447 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".AccountActivity" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/labelDadosPessoaisConta"
+                    style="@style/RedBigText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/label_dados_pessoais_conta" />
+
+                <TextView
+                    android:id="@+id/labelSaldoConta"
+                    style="@style/RedMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_saldo_conta" />
+
+                <TextView
+                    android:id="@+id/textSaldoConta"
+                    style="@style/RedMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_view_saldo_conta" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/red_ipl" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/labelNumeroConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_numero_conta" />
+
+                    <TextView
+                        android:id="@+id/labelNomeConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_nome_conta" />
+
+                    <TextView
+                        android:id="@+id/labelAreaConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_curso_conta" />
+
+                    <TextView
+                        android:id="@+id/labelTipoConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_tipo_conta" />
+
+                    <TextView
+                        android:id="@+id/labelEmailConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_email_conta" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textNumeroConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_numero_conta" />
+
+                    <TextView
+                        android:id="@+id/textNomeConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_nome_conta" />
+
+                    <TextView
+                        android:id="@+id/textAreaConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_area_conta" />
+
+                    <TextView
+                        android:id="@+id/textTipoConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_tipo_conta" />
+
+                    <TextView
+                        android:id="@+id/textEmailConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_email_conta" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/labelNifConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="@string/label_nif_conta" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textNifConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_nif_conta" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/labelCarregarSaldoConta"
+                style="@style/RedBigText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_carregar_conta_conta" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="#991426" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="10"
+                android:baselineAligned="false"
+                android:weightSum="3" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/radioButton_5"
+                        style="@style/RadioButtomGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/label_5euros_conta" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_10"
+                        style="@style/RadioButtomGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_10euros_conta" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_20"
+                        style="@style/RadioButtomGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_20euros_conta" />
+
+                    <TextView
+                        android:id="@+id/labelEntidadeConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_entidade_conta" />
+
+                    <TextView
+                        android:id="@+id/labelReferenciaConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_referencia_conta" />
+
+                    <TextView
+                        android:id="@+id/labelMontanteConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_montante_conta" />
+
+                    <TextView
+                        android:id="@+id/labelDataConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_data_conta" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/radioButton_50"
+                        style="@style/RadioButtomGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_50euros_conta" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_100"
+                        style="@style/RadioButtomGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_100euros_conta" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <RadioButton
+                            android:id="@+id/radioButtonOutroConta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <EditText
+                            android:id="@+id/editTextOutroConta"
+                            style="@style/RadioButtomGrey"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_outro_valor_conta"
+                            android:inputType="numberDecimal"
+                            android:maxLength="5" >
+                        </EditText>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textEntidadeConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_entidade_conta" />
+
+                    <TextView
+                        android:id="@+id/textReferenciaConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_referencia_conta" />
+
+                    <TextView
+                        android:id="@+id/textMontanteConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_view_montante_conta" />
+
+                    <TextView
+                        android:id="@+id/textDataConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_data_conta" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <!--  -->
+
+                    <ImageButton
+                        android:id="@+id/imageButtonMbConta"
+                        android:layout_width="67dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:contentDescription="@string/image_button_mb_conta"
+                        android:src="@drawable/mb_icon" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <Button
+                    android:id="@+id/buttonDevolucaoConta"
+                    style="@style/ButtonText"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:background="@xml/button_style"
+                    android:text="@string/button_label_devolucao_conta" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="bottom|end" >
+
+                <View
+                    android:id="@+id/view8"
+                    android:layout_width="200dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical" >
+
+                    <ImageButton
+                        android:id="@+id/imageButtonFaturasConta"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:contentDescription="@string/button_description_faturas_conta"
+                        android:src="@drawable/fac" />
+
+                    <TextView
+                        android:id="@+id/labelFaturasIconConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="@string/label_faturas_icon_conta" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view9"
+                    android:layout_width="100dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1" />
+
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/red_ipl" />
+
+                <View
+                    android:id="@+id/view11"
+                    android:layout_width="100dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical" >
+
+                    <ImageButton
+                        android:id="@+id/imageButtonSenhaConta"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:contentDescription="@string/button_description_senhas_conta"
+                        android:onClick="onClickSenhas"
+                        android:src="@drawable/senha" />
+
+                    <TextView
+                        android:id="@+id/labelSenhasIconConta"
+                        style="@style/GreyMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/label_senhas_icon_conta" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view12"
+                    android:layout_width="200dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view13"
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+        </LinearLayout>
+
+</ScrollView>

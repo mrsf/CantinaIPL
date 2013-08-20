@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- EVENTS NOTIFICATION -->
+    <string name="inline_notification_events">Notificações</string>
+    <string name="title_checkbox_notifications_preference">Receber notificações de eventos</string>
+    <string name="summary_checkbox_notifications_preference">Ativar/desativar as notifações de eventos</string>
+
+    <!-- RESERVES NOTIFICATION -->
+    <string name="title_checkbox_reserves_preference">Adicionar lembrete de reserva</string>
+    <string name="summary_checkbox_reserves_preference">Ativar/desativar os lembretes de reserva</string>
+
+    <!-- EMAIL NOTIFICATION -->
+    <string name="title_checkbox_email_preference">Enviar email</string>
+    <string name="summary_checkbox_email_preference">Enviar email com dados da referência</string>
+
+</resources>
