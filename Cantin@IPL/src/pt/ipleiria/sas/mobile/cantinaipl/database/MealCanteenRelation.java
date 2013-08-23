@@ -82,7 +82,7 @@ class MealCanteenRelation {
 						+ " WHERE m." + CantinaIplDBContract.MealBase.REFEICAO
 						+ " = ? AND mc."
 						+ CantinaIplDBContract.MealCanteenBase.CANTEEN_ID
-						+ " = ? AND",
+						+ " = ?",
 				new String[] { String.valueOf(refeicao),
 						String.valueOf(canteenId) });
 

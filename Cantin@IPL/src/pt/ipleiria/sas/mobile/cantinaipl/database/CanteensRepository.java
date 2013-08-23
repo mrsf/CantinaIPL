@@ -86,7 +86,7 @@ public class CanteensRepository extends CantinaIplRepository {
 
 		ContentValues values = new ContentValues();
 		values.put(CantinaIplDBContract.CanteenBase.CANTEEN_ID,
-				canteen.getCanteenid());
+				canteen.getId());
 		values.put(CantinaIplDBContract.CanteenBase.NAME, canteen.getName());
 		values.put(CantinaIplDBContract.CanteenBase.ADDRESS,
 				canteen.getAddress());
@@ -151,7 +151,7 @@ public class CanteensRepository extends CantinaIplRepository {
 
 		for (Canteen canteen : canteens) {
 			if (canteen != null) {
-				Cursor cursor = getCanteenById(canteen.getCanteenid());
+				Cursor cursor = getCanteenById(canteen.getId());
 				if (cursor.getCount() == 0)
 					insertCanteen(canteen);
 				cursor.close();

@@ -37,6 +37,7 @@ public class MealsRepository extends CantinaIplRepository {
 					+ CantinaIplDBContract.COMMA_SEP
 					+ CantinaIplDBContract.MealBase.TYPE
 					+ CantinaIplDBContract.TEXT_TYPE
+					+ CantinaIplDBContract.COMMA_SEP
 					+ CantinaIplDBContract.MealBase.PRICE
 					+ CantinaIplDBContract.REAL_TYPE + ")",
 			MealCanteenRelation.CREATE_TABLE_MEALCANTEEN,
