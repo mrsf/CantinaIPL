@@ -136,7 +136,7 @@ public class CanteensActivity extends ClosableActivity implements
 				Toast.LENGTH_LONG).show();
 
 		Bundle bundle = new Bundle();
-		bundle.putInt("id", canteen.getCanteenid());
+		bundle.putInt("id", canteen.getId());
 		bundle.putString("name", canteen.getName());
 
 		Intent intent = new Intent(this, MealsActivity.class);

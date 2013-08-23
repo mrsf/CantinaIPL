@@ -52,7 +52,7 @@ public class ReserveDetailsActivity extends BaseActivity {
 		view.newBarCode(String.valueOf(this.reserve.getId()) + ";"
 				+ this.reserve.getPurchaseDate() + ";"
 				+ this.reserve.getUseDate() + ";" + this.reserve.getPrice()
-				+ ";" + this.reserve.getUserLogin() + ";"
+				+ ";" + this.reserve.getUserName() + ";"
 				+ this.reserve.getMealId() + ";;");
 
 		this.dishType = (TextView) findViewById(R.id.textView10);
