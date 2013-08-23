@@ -1,5 +1,7 @@
 package pt.ipleiria.sas.mobile.cantinaipl.model;
 
+import java.util.Observable;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -17,7 +19,7 @@ import android.os.Parcelable;
  * @since 1.0
  * 
  */
-public class Dish implements Parcelable {
+public class Dish extends Observable implements Parcelable {
 
 	// [REGION] Fields
 
@@ -33,8 +35,18 @@ public class Dish implements Parcelable {
 
 	// [REGION] Constructors
 
+	public Dish() {
+		super();
+	}
+
+	public Dish(Parcel in) {
+		super();
+		this.readFromParcel(in);
+	}
+
 	public Dish(int id, String photo, String description, String name,
 			double price, String type, double rating) {
+		super();
 		this.id = id;
 		this.photo = photo;
 		this.description = description;
@@ -42,13 +54,8 @@ public class Dish implements Parcelable {
 		this.price = price;
 		this.type = type;
 		this.rating = rating;
-	}
-
-	public Dish(Parcel in) {
-		this.readFromParcel(in);
-	}
-
-	public Dish() {
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	// [ENDREGION] Constructors
@@ -61,6 +68,8 @@ public class Dish implements Parcelable {
 
 	public void setId(int id) {
 		this.id = id;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getPhoto() {
@@ -69,6 +78,8 @@ public class Dish implements Parcelable {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getDescription() {
@@ -77,6 +88,8 @@ public class Dish implements Parcelable {
 
 	public void setDescription(String description) {
 		this.description = description;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getName() {
@@ -85,6 +98,8 @@ public class Dish implements Parcelable {
 
 	public void setName(String name) {
 		this.name = name;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public double getPrice() {
@@ -93,6 +108,8 @@ public class Dish implements Parcelable {
 
 	public void setPrice(double price) {
 		this.price = price;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getType() {
@@ -101,6 +118,8 @@ public class Dish implements Parcelable {
 
 	public void setType(String type) {
 		this.type = type;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public double getRating() {
@@ -109,6 +128,8 @@ public class Dish implements Parcelable {
 
 	public void setRating(double rating) {
 		this.rating = rating;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	// [ENDREGION] GetAndSet_Methods

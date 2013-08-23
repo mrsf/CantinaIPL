@@ -2,6 +2,7 @@ package pt.ipleiria.sas.mobile.cantinaipl.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -19,7 +20,7 @@ import android.os.Parcelable;
  * @since 1.0
  * 
  */
-public class Reserve implements Parcelable {
+public class Reserve extends Observable implements Parcelable {
 
 	// [REGION] Fields
 
@@ -28,7 +29,7 @@ public class Reserve implements Parcelable {
 	private String useDate;
 	private double price;
 	private boolean isValid;
-	private String userLogin;
+	private String userName;
 	private int mealId;
 	private boolean isAccounted;
 	private List<Dish> dishes;
@@ -39,27 +40,32 @@ public class Reserve implements Parcelable {
 
 	// [REGION] Constructors
 
+	public Reserve() {
+		super();
+	}
+
+	public Reserve(Parcel in) {
+		super();
+		this.readFromParcel(in);
+	}
+
 	public Reserve(int id, String purchaseDate, String useDate, double price,
-			boolean isValid, String userLogin, int mealId, boolean isAccounted,
+			boolean isValid, String userName, int mealId, boolean isAccounted,
 			List<Dish> dishes, int canteenId, String type) {
+		super();
 		this.id = id;
 		this.purchaseDate = purchaseDate;
 		this.useDate = useDate;
 		this.price = price;
 		this.isValid = isValid;
-		this.userLogin = userLogin;
+		this.userName = userName;
 		this.mealId = mealId;
 		this.isAccounted = isAccounted;
 		this.dishes = dishes;
 		this.canteenId = canteenId;
-		this.setType(type);
-	}
-
-	public Reserve(Parcel in) {
-		this.readFromParcel(in);
-	}
-
-	public Reserve() {
+		this.type = type;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	// [ENDREGION] Constructors
@@ -72,6 +78,8 @@ public class Reserve implements Parcelable {
 
 	public void setId(int id) {
 		this.id = id;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getPurchaseDate() {
@@ -80,6 +88,8 @@ public class Reserve implements Parcelable {
 
 	public void setPurchaseDate(String purchaseDate) {
 		this.purchaseDate = purchaseDate;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getUseDate() {
@@ -88,6 +98,8 @@ public class Reserve implements Parcelable {
 
 	public void setUseDate(String useDate) {
 		this.useDate = useDate;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public double getPrice() {
@@ -96,6 +108,8 @@ public class Reserve implements Parcelable {
 
 	public void setPrice(double price) {
 		this.price = price;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public boolean isValid() {
@@ -104,14 +118,18 @@ public class Reserve implements Parcelable {
 
 	public void setValid(boolean isValid) {
 		this.isValid = isValid;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
-	public String getUserLogin() {
-		return userLogin;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUserLogin(String userLogin) {
-		this.userLogin = userLogin;
+	public void setUserName(String userName) {
+		this.userName = userName;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public int getMealId() {
@@ -120,6 +138,8 @@ public class Reserve implements Parcelable {
 
 	public void setMealId(int mealId) {
 		this.mealId = mealId;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public boolean isAccounted() {
@@ -128,6 +148,8 @@ public class Reserve implements Parcelable {
 
 	public void setAccounted(boolean isAccounted) {
 		this.isAccounted = isAccounted;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public List<Dish> getDishes() {
@@ -136,6 +158,8 @@ public class Reserve implements Parcelable {
 
 	public void setDishes(List<Dish> dishes) {
 		this.dishes = dishes;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public int getCanteenId() {
@@ -144,6 +168,8 @@ public class Reserve implements Parcelable {
 
 	public void setCanteenId(int canteenId) {
 		this.canteenId = canteenId;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getType() {
@@ -152,6 +178,8 @@ public class Reserve implements Parcelable {
 
 	public void setType(String type) {
 		this.type = type;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	// [ENDREGION] GettersAndSetters
@@ -170,7 +198,7 @@ public class Reserve implements Parcelable {
 		dest.writeString(this.useDate);
 		dest.writeDouble(this.price);
 		dest.writeInt(this.isValid ? 1 : 0);
-		dest.writeString(this.userLogin);
+		dest.writeString(this.userName);
 		dest.writeInt(this.mealId);
 		dest.writeInt(this.isAccounted ? 1 : 0);
 		dest.writeList(this.dishes);
@@ -184,7 +212,7 @@ public class Reserve implements Parcelable {
 		this.useDate = in.readString();
 		this.price = in.readDouble();
 		this.isValid = (in.readInt() == 1 ? true : false);
-		this.userLogin = in.readString();
+		this.userName = in.readString();
 		this.mealId = in.readInt();
 		this.isAccounted = (in.readInt() == 1 ? true : false);
 		this.dishes = new LinkedList<Dish>();

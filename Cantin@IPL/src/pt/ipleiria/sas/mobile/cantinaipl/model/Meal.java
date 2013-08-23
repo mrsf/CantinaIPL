@@ -2,6 +2,7 @@ package pt.ipleiria.sas.mobile.cantinaipl.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -20,7 +21,7 @@ import android.os.Parcelable;
  * @since 1.0
  * 
  */
-public class Meal implements Parcelable {
+public class Meal extends Observable implements Parcelable {
 
 	// [REGION] Fields
 
@@ -35,21 +36,26 @@ public class Meal implements Parcelable {
 
 	// [REGION] Constructors
 
+	public Meal() {
+		super();
+	}
+
+	public Meal(Parcel in) {
+		super();
+		this.readFromParcel(in);
+	}
+
 	public Meal(int id, String date, boolean refeicao, String type,
 			List<Dish> dishes, double price) {
+		super();
 		this.id = id;
 		this.date = date;
 		this.refeicao = refeicao;
 		this.type = type;
 		this.dishes = dishes;
 		this.price = price;
-	}
-
-	public Meal(Parcel in) {
-		this.readFromParcel(in);
-	}
-
-	public Meal() {
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	// [ENDREGION] Constructors
@@ -62,6 +68,8 @@ public class Meal implements Parcelable {
 
 	public void setId(int id) {
 		this.id = id;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getDate() {
@@ -70,6 +78,8 @@ public class Meal implements Parcelable {
 
 	public void setDate(String date) {
 		this.date = date;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public boolean isRefeicao() {
@@ -78,6 +88,8 @@ public class Meal implements Parcelable {
 
 	public void setRefeicao(boolean refeicao) {
 		this.refeicao = refeicao;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public String getType() {
@@ -86,6 +98,8 @@ public class Meal implements Parcelable {
 
 	public void setType(String type) {
 		this.type = type;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public List<Dish> getDishes() {
@@ -94,6 +108,8 @@ public class Meal implements Parcelable {
 
 	public void setDishes(List<Dish> dishes) {
 		this.dishes = dishes;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	public double getPrice() {
@@ -102,6 +118,8 @@ public class Meal implements Parcelable {
 
 	public void setPrice(double price) {
 		this.price = price;
+		super.setChanged();
+		super.notifyObservers();
 	}
 
 	// [ENDREGION] GetAndSet_Methods
