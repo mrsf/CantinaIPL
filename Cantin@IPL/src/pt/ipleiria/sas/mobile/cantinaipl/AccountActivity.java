@@ -31,7 +31,7 @@ public class AccountActivity extends BaseActivity {
 	private static final String FUNCIONARIO = "Funcionário";
 	private static final String ESTUDANTE = "Estudante";
 	private static final String SERVICE_PARAMS = UserSingleton.getInstance()
-			.getUser().getLogin()
+			.getUser().getUserName()
 			+ "$ipl.cantina.1213@gmail.com";
 
 	private double montante;
@@ -54,10 +54,10 @@ public class AccountActivity extends BaseActivity {
 		setContentView(R.layout.activity_account);
 
 		User user = UserSingleton.getInstance().getUser();
-		String userType = (user.isType() ? FUNCIONARIO : ESTUDANTE);
+		String userType = (user.getType() ? FUNCIONARIO : ESTUDANTE);
 
 		this.userNumber = (TextView) findViewById(R.id.textNumeroConta);
-		this.userNumber.setText(user.getLogin());
+		this.userNumber.setText(user.getUserName());
 		this.userName = (TextView) findViewById(R.id.textNomeConta);
 		this.userName.setText(user.getName());
 		this.userCourse = (TextView) findViewById(R.id.textAreaConta);

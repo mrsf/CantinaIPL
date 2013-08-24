@@ -71,7 +71,7 @@ public class UserActivity extends ClosableActivity {
 
 		this.numberEdit = (EditText) findViewById(R.id.et_user_number);
 		this.numberEdit.setText(this.numberEdit.getHint() + ": "
-				+ user.getLogin());
+				+ user.getUserName());
 		this.numberEdit.setEnabled(false);
 
 		this.schoolEdit = (EditText) findViewById(R.id.et_user_school);
@@ -111,7 +111,7 @@ public class UserActivity extends ClosableActivity {
 
 			nameValue = UserSingleton.getInstance().getUser().getName();
 			courseValue = UserSingleton.getInstance().getUser().getCourse();
-			numberValue = UserSingleton.getInstance().getUser().getLogin();
+			numberValue = UserSingleton.getInstance().getUser().getUserName();
 			schoolValue = UserSingleton.getInstance().getUser().getSchool();
 			biValue = biEdit.getText().toString();
 			nifValue = Integer.parseInt(nifEdit.getText().toString());
@@ -177,7 +177,7 @@ public class UserActivity extends ClosableActivity {
 						+ URLEncoder.encode(schoolValue, "UTF-8")
 						+ "$"
 						+ String.valueOf(UserSingleton.getInstance().getUser()
-								.isType());
+								.getType());
 				String data = readJsonData(url.replace("+", "%20"));
 
 				JSONObject jsonObject = new JSONObject(data);
@@ -200,9 +200,9 @@ public class UserActivity extends ClosableActivity {
 				usersRepository = new UsersRepository(getApplicationContext(),
 						false);
 				usersRepository.open();
-				usersRepository.insertUser(new User(user.getLogin(), biValue,
-						user.getName(), user.getCourse(), user.isRegime(), "",
-						nifValue, user.getEmail(), user.isType(), user
+				usersRepository.insertUser(new User(user.getUserName(), biValue,
+						user.getName(), user.getCourse(), user.getRegime(), "",
+						nifValue, user.getEmail(), user.getType(), user
 								.isActive(), user.getSchool()));
 				usersRepository.close();
 

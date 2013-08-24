@@ -37,7 +37,7 @@ public class ReservesActivity extends BaseActivity implements
 
 	private static final String TAG = "RESERVES_ACTIVITY";
 	private static final String SERVICE_PARAMS = UserSingleton.getInstance()
-			.getUser().getLogin()
+			.getUser().getUserName()
 			+ "$" + "ipl.cantina.1213@gmail.com";
 
 	// [ENDREGION] Constants
@@ -113,7 +113,7 @@ public class ReservesActivity extends BaseActivity implements
 														UserSingleton
 																.getInstance()
 																.getUser()
-																.getLogin()
+																.getUserName()
 																+ ",ipl.cantina.1213@gmail.com,"
 																+ itemToRemove
 																		.getId());
@@ -125,7 +125,7 @@ public class ReservesActivity extends BaseActivity implements
 												itemToRemove)
 												.execute(UserSingleton
 														.getInstance()
-														.getUser().getLogin()
+														.getUser().getUserName()
 														+ ",ipl.cantina.1213@gmail.com,"
 														+ itemToRemove.getId());
 

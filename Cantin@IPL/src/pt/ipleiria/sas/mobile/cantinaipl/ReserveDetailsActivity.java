@@ -61,7 +61,7 @@ public class ReserveDetailsActivity extends BaseActivity {
 						: (this.reserve.getType().equals("peixe") ? "Peixe"
 								: "Vegetariano"))
 						+ " "
-						+ (!UserSingleton.getInstance().getUser().isType() ? "(Estudante)"
+						+ (!UserSingleton.getInstance().getUser().getType() ? "(Estudante)"
 								: "(Funcionário)"));
 
 		new CheckingReserve(this).executeOnExecutor(super.getExec(),

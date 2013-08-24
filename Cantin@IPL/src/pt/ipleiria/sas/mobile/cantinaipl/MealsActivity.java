@@ -32,7 +32,7 @@ public class MealsActivity extends BaseActivity implements OnItemClickListener {
 
 	private static final String TAG = "MEALS_ACTIVITY";
 	private static final String SERVICE_METHOD = "/"
-			+ UserSingleton.getInstance().getUser().getLogin()
+			+ UserSingleton.getInstance().getUser().getUserName()
 			+ "$ipl.cantina.1213@gmail.com$";
 
 	private HorizontalListView primaryGallery;

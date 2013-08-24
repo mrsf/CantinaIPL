@@ -63,7 +63,7 @@ public class CanteensActivity extends ClosableActivity implements
 
 		User user = UserSingleton.getInstance().getUser();
 		EventSingleton.getInstance().getEvent()
-				.setUserType(user.isType() ? "Funcionário" : "Estudante");
+				.setUserType(user.getType() ? "Funcionário" : "Estudante");
 
 		this.notificationManager = null;
 

@@ -216,7 +216,7 @@ public class MealDetailsActivity extends BaseActivity {
 														UserSingleton
 																.getInstance()
 																.getUser()
-																.getLogin()
+																.getUserName()
 																+ "$ipl.cantina.1213@gmail.com$"
 																+ String.valueOf(meal
 																		.getId())
@@ -234,7 +234,7 @@ public class MealDetailsActivity extends BaseActivity {
 												showProgressDialog())
 												.execute(UserSingleton
 														.getInstance()
-														.getUser().getLogin()
+														.getUser().getUserName()
 														+ "$ipl.cantina.1213@gmail.com$"
 														+ meal.getId()
 														+ "$"
@@ -412,7 +412,7 @@ public class MealDetailsActivity extends BaseActivity {
 								.getPrice())));
 		dessertPrice.setText(sb + " €");
 
-		if (!UserSingleton.getInstance().getUser().isType()) {
+		if (!UserSingleton.getInstance().getUser().getType()) {
 
 			((TextView) findViewById(R.id.textPrecoPratoPrato))
 					.setVisibility(View.GONE);
