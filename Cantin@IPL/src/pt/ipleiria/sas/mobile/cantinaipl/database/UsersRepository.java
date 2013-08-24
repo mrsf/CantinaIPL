@@ -85,20 +85,20 @@ public class UsersRepository extends CantinaIplRepository {
 
 	public long insertUser(User user) throws SQLException {
 		if (user != null) {
-			Cursor cursor = getUserByLogin(user.getLogin());
+			Cursor cursor = getUserByLogin(user.getUserName());
 			if (cursor.getCount() == 0) {
 				ContentValues values = new ContentValues();
-				values.put(CantinaIplDBContract.UserBase.LOGIN, user.getLogin());
+				values.put(CantinaIplDBContract.UserBase.LOGIN, user.getUserName());
 				values.put(CantinaIplDBContract.UserBase.BI, user.getBi());
 				values.put(CantinaIplDBContract.UserBase.NAME, user.getName());
 				values.put(CantinaIplDBContract.UserBase.COURSE,
 						user.getCourse());
 				values.put(CantinaIplDBContract.UserBase.REGIME,
-						user.isRegime());
+						user.getRegime());
 				values.put(CantinaIplDBContract.UserBase.PHOTO, user.getPhoto());
 				values.put(CantinaIplDBContract.UserBase.NIF, user.getNif());
 				values.put(CantinaIplDBContract.UserBase.EMAIL, user.getEmail());
-				values.put(CantinaIplDBContract.UserBase.TYPE, user.isType());
+				values.put(CantinaIplDBContract.UserBase.TYPE, user.getType());
 				values.put(CantinaIplDBContract.UserBase.ACTIVE,
 						user.isActive());
 				values.put(CantinaIplDBContract.UserBase.SCHOOL,
