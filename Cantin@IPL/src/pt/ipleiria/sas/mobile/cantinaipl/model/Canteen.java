@@ -162,8 +162,14 @@ public class Canteen extends Observable implements Parcelable {
 		return active;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void activate() {
+		this.active = true;
+		super.setChanged();
+		super.notifyObservers();
+	}
+
+	public void desactivate() {
+		this.active = false;
 		super.setChanged();
 		super.notifyObservers();
 	}

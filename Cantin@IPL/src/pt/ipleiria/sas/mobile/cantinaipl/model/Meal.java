@@ -23,6 +23,13 @@ import android.os.Parcelable;
  */
 public class Meal extends Observable implements Parcelable {
 
+	// [REGION] Constants
+	
+	public static final boolean LUNCH_REFEICAO = false;
+	public static final boolean DINNER_REFEICAO = true;
+
+	// [ENDREGION] Constants
+	
 	// [REGION] Fields
 
 	private int id;
