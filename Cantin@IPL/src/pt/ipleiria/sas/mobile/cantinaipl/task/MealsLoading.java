@@ -122,7 +122,7 @@ public class MealsLoading extends DataLoading<String, Meal, LinkedList<Meal>> {
 								jsonObject.getBoolean("Refeicao"),
 								jsonObject.getString("Type"), dishList,
 								(!UserSingleton.getInstance().getUser()
-										.isType() ? jsonObject
+										.getType() ? jsonObject
 										.getDouble("StudentPrice") : jsonObject
 										.getDouble("EmployeePrice")));
 
