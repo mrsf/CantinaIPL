@@ -10,6 +10,7 @@
     <string name="action_account">Conta</string>
     <string name="action_update">Actualizar</string>
     <string name="action_search">Procurar</string>
+    <string name="action_about">Sobre</string>
     <string name="title_activity_meals">Ementa</string>
     <string name="title_activity_meal_details">Refeição</string>
     <string name="title_activity_search">Procura</string>

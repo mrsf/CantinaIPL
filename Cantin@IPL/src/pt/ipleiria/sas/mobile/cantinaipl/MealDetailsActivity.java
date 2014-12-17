@@ -11,6 +11,7 @@ import pt.ipleiria.sas.mobile.cantinaipl.controller.DownloadTask;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.EventSingleton;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.ToggleButtonGroup;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.UserSingleton;
+import pt.ipleiria.sas.mobile.cantinaipl.model.Authentication;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Dish;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Meal;
 import pt.ipleiria.sas.mobile.cantinaipl.task.ImageDownloader;
@@ -67,89 +68,95 @@ public class MealDetailsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_meal_details);
 
-		this.context = this;
+		if (UserSingleton.getInstance().getUser() == null) {
+			startActivity(new Intent(this, Authentication.class));
+			//finish();
+		} else {
 
-		// disable button Comprar_senha if value = 0.00 €
-		imbt = (ImageButton) findViewById(R.id.imageButtonComprarSenhaPrato);
-		imbt.setEnabled(false);
+			this.context = this;
 
-		this.precoTotal = (TextView) findViewById(R.id.textPrecoTotalPrato);
+			// disable button Comprar_senha if value = 0.00 €
+			imbt = (ImageButton) findViewById(R.id.imageButtonComprarSenhaPrato);
+			imbt.setEnabled(false);
 
-		// --- Listner para o grupo dos 3 toggleButons
-		ToggleButtonGroup tgGroup = new ToggleButtonGroup(this,
-				R.id.toggleButtonPratoPrato, R.id.toggleButtonSopaPrato,
-				R.id.toogleButtonSobremesaPrato);
+			this.precoTotal = (TextView) findViewById(R.id.textPrecoTotalPrato);
 
-		Intent intent = getIntent();
-		this.meal = (Meal) intent.getParcelableExtra("meal");
+			// --- Listner para o grupo dos 3 toggleButons
+			ToggleButtonGroup tgGroup = new ToggleButtonGroup(this,
+					R.id.toggleButtonPratoPrato, R.id.toggleButtonSopaPrato,
+					R.id.toogleButtonSobremesaPrato);
 
-		this.dishIds = "";
+			Intent intent = getIntent();
+			this.meal = (Meal) intent.getParcelableExtra("meal");
 
-		final List<Dish> d = meal.getDishes();
-		Collections.sort(d, new Comparator<Dish>() {
-			@Override
-			public int compare(Dish lhs, Dish rhs) {
-				return lhs.getType().compareTo(rhs.getType());
-			};
-		});
+			this.dishIds = "";
 
-		tgGroup.setGroupListener(new ToggleButtonGroup.GrupoListener() {
+			final List<Dish> d = meal.getDishes();
+			Collections.sort(d, new Comparator<Dish>() {
+				@Override
+				public int compare(Dish lhs, Dish rhs) {
+					return lhs.getType().compareTo(rhs.getType());
+				};
+			});
 
-			@Override
-			public void grupoChanged(boolean[] values) {
-				double total_aux = 0.0;
-				String dishIds_aux = "";
-				imbt.setEnabled(false);
-				if (values[0]) {
-					total_aux += precoPrato;
+			tgGroup.setGroupListener(new ToggleButtonGroup.GrupoListener() {
 
-					if (!dishIds_aux.equals(""))
-						dishIds_aux += "£";
+				@Override
+				public void grupoChanged(boolean[] values) {
+					double total_aux = 0.0;
+					String dishIds_aux = "";
+					imbt.setEnabled(false);
+					if (values[0]) {
+						total_aux += precoPrato;
 
-					dishIds_aux += String.valueOf(d.get(0).getId());
-					imbt.setEnabled(true);
+						if (!dishIds_aux.equals(""))
+							dishIds_aux += "£";
+
+						dishIds_aux += String.valueOf(d.get(0).getId());
+						imbt.setEnabled(true);
+					}
+					if (values[1]) {
+						total_aux += precoSopa;
+
+						if (!dishIds_aux.equals(""))
+							dishIds_aux += "£";
+
+						dishIds_aux += String.valueOf(d.get(2).getId());
+						imbt.setEnabled(true);
+					}
+					if (values[2]) {
+						total_aux += precoSobremesa;
+
+						if (!dishIds_aux.equals(""))
+							dishIds_aux += "£";
+
+						dishIds_aux += String.valueOf(d.get(1).getId());
+						imbt.setEnabled(true);
+					}
+
+					dishIds = dishIds_aux;
+					totalGlobal = Math.round((total_aux) * 100.0) / 100.0;
+					precoTotal.setText(formatStringToDecimal(String
+							.valueOf(totalGlobal)) + " €");
 				}
-				if (values[1]) {
-					total_aux += precoSopa;
+			});
 
-					if (!dishIds_aux.equals(""))
-						dishIds_aux += "£";
+			EventSingleton.getInstance().getEvent()
+					.setDescription(this.meal.getDishes().get(1).getName());
+			EventSingleton
+					.getInstance()
+					.getEvent()
+					.setRefeicaoType(
+							(this.meal.getRefeicao() ? "Almoço (" : "Jantar (")
+									+ this.meal.getType() + ")");
 
-					dishIds_aux += String.valueOf(d.get(2).getId());
-					imbt.setEnabled(true);
-				}
-				if (values[2]) {
-					total_aux += precoSobremesa;
+			ActionBar ab = getSupportActionBar();
+			ab.setTitle(getResources().getString(
+					R.string.title_activity_meal_details)
+					+ " de " + meal.getDate());
 
-					if (!dishIds_aux.equals(""))
-						dishIds_aux += "£";
-
-					dishIds_aux += String.valueOf(d.get(1).getId());
-					imbt.setEnabled(true);
-				}
-
-				dishIds = dishIds_aux;
-				totalGlobal = Math.round((total_aux) * 100.0) / 100.0;
-				precoTotal.setText(formatStringToDecimal(String
-						.valueOf(totalGlobal)) + " €");
-			}
-		});
-
-		EventSingleton.getInstance().getEvent()
-				.setDescription(this.meal.getDishes().get(1).getName());
-		EventSingleton
-				.getInstance()
-				.getEvent()
-				.setRefeicaoType(
-						(this.meal.isRefeicao() ? "Almoço (" : "Jantar (")
-								+ this.meal.getType() + ")");
-
-		ActionBar ab = getSupportActionBar();
-		ab.setTitle(getResources().getString(
-				R.string.title_activity_meal_details)
-				+ " de " + meal.getDate());
-
-		populateView(meal);
+			populateView(meal);
+		}
 	}
 
 	/*
@@ -234,7 +241,8 @@ public class MealDetailsActivity extends BaseActivity {
 												showProgressDialog())
 												.execute(UserSingleton
 														.getInstance()
-														.getUser().getUserName()
+														.getUser()
+														.getUserName()
 														+ "$ipl.cantina.1213@gmail.com$"
 														+ meal.getId()
 														+ "$"

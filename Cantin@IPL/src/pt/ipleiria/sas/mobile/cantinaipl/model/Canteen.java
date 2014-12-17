@@ -1,5 +1,7 @@
 package pt.ipleiria.sas.mobile.cantinaipl.model;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 
 import android.os.Parcel;
@@ -32,6 +34,7 @@ public class Canteen extends Observable implements Parcelable {
 	private double latitude;
 	private double longitude;
 	private boolean active;
+	private List<Meal> meals;
 
 	// [ENDREGION] Fields
 
@@ -48,7 +51,7 @@ public class Canteen extends Observable implements Parcelable {
 
 	public Canteen(int id, String name, String address, String amPeriod,
 			String pmPeriod, String campus, String photo, double latitude,
-			double longitude, boolean active) {
+			double longitude, boolean active, List<Meal> meals) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -60,6 +63,7 @@ public class Canteen extends Observable implements Parcelable {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.active = active;
+		this.meals = meals;
 		super.setChanged();
 		super.notifyObservers();
 	}
@@ -174,6 +178,16 @@ public class Canteen extends Observable implements Parcelable {
 		super.notifyObservers();
 	}
 
+	public List<Meal> getMeals() {
+		return meals;
+	}
+
+	public void setMeals(List<Meal> meals) {
+		this.meals = meals;
+		super.setChanged();
+		super.notifyObservers();
+	}
+
 	// [ENDREGION] GetAndSet_Methods
 
 	// [REGION] Parcelable_Code
@@ -195,6 +209,7 @@ public class Canteen extends Observable implements Parcelable {
 		dest.writeDouble(this.latitude);
 		dest.writeDouble(this.longitude);
 		dest.writeInt(this.active ? 1 : 0);
+		dest.writeList(this.meals);
 	}
 
 	private void readFromParcel(Parcel in) {
@@ -208,6 +223,8 @@ public class Canteen extends Observable implements Parcelable {
 		this.latitude = in.readDouble();
 		this.longitude = in.readDouble();
 		this.active = (in.readInt() == 1 ? true : false);
+		this.meals = new LinkedList<Meal>();
+		in.readList(this.meals, Meal.class.getClassLoader());
 	}
 
 	public static final Parcelable.Creator<Canteen> CREATOR = new Parcelable.Creator<Canteen>() {

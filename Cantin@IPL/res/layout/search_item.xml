@@ -15,6 +15,22 @@
         android:scaleType="centerCrop"
         android:src="@drawable/sopa1" />
 
+    <FrameLayout
+        android:id="@+id/search_meal_loading"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp" >
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal" />
+    </FrameLayout>
+
     <TextView
         android:id="@+id/tv_search_meal_name"
         android:layout_width="wrap_content"

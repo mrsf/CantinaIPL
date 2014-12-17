@@ -114,7 +114,7 @@ public class ReservesActivity extends BaseActivity implements
 																.getInstance()
 																.getUser()
 																.getUserName()
-																+ ",ipl.cantina.1213@gmail.com,"
+																+ "$ipl.cantina.1213@gmail.com$"
 																+ itemToRemove
 																		.getId());
 									else

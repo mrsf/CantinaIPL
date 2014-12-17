@@ -9,11 +9,15 @@ import pt.ipleiria.sas.mobile.cantinaipl.controller.ImageCacheFactory;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.SynchronizedDownloadList;
 import pt.ipleiria.sas.mobile.cantinaipl.parser.FormatString;
 import pt.ipleiria.sas.mobile.cantinaipl.task.ImageDownloader;
+import pt.ipleiria.sas.mobile.cantinaipl.task.UpdateApplication;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,6 +44,7 @@ public abstract class BaseActivity extends SherlockActivity {
 	private ImageDownloader imageDownloader;
 	private ImageCache imageCache;
 	private Runnable runnable;
+	private ProgressDialog progressDialog;
 
 	public Runnable getRunnable() {
 		return runnable;
@@ -50,27 +55,31 @@ public abstract class BaseActivity extends SherlockActivity {
 	}
 
 	private static ThreadPoolExecutor exec;
-	//private static Executor oldExec;
-	//private static CantinaIplApplication cantinaIplApplication;
+
+	// private static Executor oldExec;
+	// private static CantinaIplApplication cantinaIplApplication;
 
 	// [ENDREGION] Variables
 
 	// [REGION] Inherited_Methods
 
-	/*public static SerialTaskExecutor getOldExec() {
-		return (SerialTaskExecutor) oldExec;
-	}
-
-	public static void setOldExec(Executor oldExec) {
-		BaseActivity.oldExec = oldExec;
-	}*/
+	/*
+	 * public static SerialTaskExecutor getOldExec() { return
+	 * (SerialTaskExecutor) oldExec; }
+	 * 
+	 * public static void setOldExec(Executor oldExec) { BaseActivity.oldExec =
+	 * oldExec; }
+	 */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		/*if (BaseActivity.cantinaIplApplication == null)
-			BaseActivity.cantinaIplApplication = (CantinaIplApplication) getApplication();*/
+		/*
+		 * if (BaseActivity.cantinaIplApplication == null)
+		 * BaseActivity.cantinaIplApplication = (CantinaIplApplication)
+		 * getApplication();
+		 */
 
 		this.downloadList = new SynchronizedDownloadList();
 		this.imageDownloader = new ImageDownloader(imageCache);
@@ -82,10 +91,10 @@ public abstract class BaseActivity extends SherlockActivity {
 			/*
 			 * else BaseActivity.exec.purge();
 			 */
-		} /*else {
-			if (BaseActivity.oldExec == null)
-				BaseActivity.oldExec = new SerialTaskExecutor();
-		}*/
+		} /*
+		 * else { if (BaseActivity.oldExec == null) BaseActivity.oldExec = new
+		 * SerialTaskExecutor(); }
+		 */
 
 		// exec = (ThreadPoolExecutor) Executors.newScheduledThreadPool(2);
 
@@ -130,13 +139,13 @@ public abstract class BaseActivity extends SherlockActivity {
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 			return true;
-		case R.id.action_account:
-			i = new Intent(getApplicationContext(), AccountActivity.class);
+		case R.id.action_reserves:
+			i = new Intent(getApplicationContext(), ReservesActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 			return true;
-		case R.id.action_reserves:
-			i = new Intent(getApplicationContext(), ReservesActivity.class);
+		case R.id.action_account:
+			i = new Intent(getApplicationContext(), AccountActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 			return true;
@@ -156,8 +165,40 @@ public abstract class BaseActivity extends SherlockActivity {
 		case R.id.action_search:
 			onSearchRequested();
 			return true;
+		case R.id.action_update:
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+				new UpdateApplication(getApplicationContext(),
+						showProgressDialog("A actualizar aplicação",
+								"Actualização cancelada")).executeOnExecutor(
+						BaseActivity.getExec(), "2091112$");
+			else
+				new UpdateApplication(getApplicationContext(),
+						showProgressDialog("A actualizar aplicação",
+								"Actualização cancelada")).execute("2091112$");
+			return true;
+		case R.id.action_about:
+			DisplayToast("Projeto Informatico - Engenharia Informatica\n"
+					+ "Elaborado por Márcio Francisco e Mário Correia\n"
+					+ "Instituto Politecnico de Leiria");
+			return true;
 		}
+
 		return false;
+	}
+
+	private ProgressDialog showProgressDialog(String title,
+			final String cancelMessage) {
+
+		this.progressDialog = ProgressDialog.show(this, title, "Aguarde...",
+				true, true, new OnCancelListener() {
+					@Override
+					public void onCancel(DialogInterface dialog) {
+						DisplayToast(cancelMessage);
+						dialog.dismiss();
+					}
+				});
+
+		return this.progressDialog;
 	}
 
 	/*
@@ -247,14 +288,14 @@ public abstract class BaseActivity extends SherlockActivity {
 		this.imageCache = imageCache;
 	}
 
-	/*public static CantinaIplApplication getCantinaIplApplication() {
-		return cantinaIplApplication;
-	}
-
-	public static void setCantinaIplApplication(
-			CantinaIplApplication cantinaIplApplication) {
-		BaseActivity.cantinaIplApplication = cantinaIplApplication;
-	}*/
+	/*
+	 * public static CantinaIplApplication getCantinaIplApplication() { return
+	 * cantinaIplApplication; }
+	 * 
+	 * public static void setCantinaIplApplication( CantinaIplApplication
+	 * cantinaIplApplication) { BaseActivity.cantinaIplApplication =
+	 * cantinaIplApplication; }
+	 */
 
 	// [ENDREGION] GetsAndSets_Methods
 
@@ -267,7 +308,7 @@ public abstract class BaseActivity extends SherlockActivity {
 
 	// Display Toast Messages
 	public void DisplayToast(String msg) {
-		Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
+		Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
 	}
 
 	// String modify dot to comma

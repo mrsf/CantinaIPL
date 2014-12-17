@@ -57,7 +57,7 @@ public class UserAuthentication extends
 						if (userObject != null)
 							UserSingleton.getInstance().user = new User(
 									userObject.getString("Login"),
-									userObject.getString("Bi"),
+									userObject.getInt("Bi"),
 									userObject.getString("Name"),
 									userObject.getString("Course"),
 									userObject.getBoolean("Regime"),

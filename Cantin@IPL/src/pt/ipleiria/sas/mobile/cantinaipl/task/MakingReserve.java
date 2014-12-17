@@ -80,7 +80,7 @@ public class MakingReserve extends DataLoading<String, Boolean, Reserve> {
 				Log.i(TAG, "Making a reserve.");
 
 				List<Dish> dishes = new ArrayList<Dish>();
-				JSONArray jsonDishArray = jsonObject.getJSONArray("Dishes");
+				JSONArray jsonDishArray = jsonObject.getJSONArray("ListDish");
 
 				for (int j = 0; j < jsonDishArray.length(); j++) {
 					JSONObject jsonDishObject = jsonDishArray.getJSONObject(j);

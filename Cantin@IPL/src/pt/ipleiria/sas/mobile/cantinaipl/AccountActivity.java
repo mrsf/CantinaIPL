@@ -4,6 +4,7 @@ import com.actionbarsherlock.view.MenuInflater;
 
 import pt.ipleiria.sas.mobile.cantinaipl.controller.AccountSingleton;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.GrupoRadios;
+import pt.ipleiria.sas.mobile.cantinaipl.controller.Mail;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.UserSingleton;
 import pt.ipleiria.sas.mobile.cantinaipl.model.User;
 import pt.ipleiria.sas.mobile.cantinaipl.task.AccountLoading;
@@ -12,14 +13,17 @@ import pt.ipleiria.sas.mobile.cantinaipl.task.GenerateReference;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -48,10 +52,16 @@ public class AccountActivity extends BaseActivity {
 
 	private TextView balance;
 
+	private Context context;
+	
+	private AccountLoading accountLoading;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account);
+
+		this.context = this;
 
 		User user = UserSingleton.getInstance().getUser();
 		String userType = (user.getType() ? FUNCIONARIO : ESTUDANTE);
@@ -78,8 +88,13 @@ public class AccountActivity extends BaseActivity {
 				R.id.radioButtonOutroConta);
 
 		this.balance = (TextView) findViewById(R.id.textSaldoConta);
-		new AccountLoading(this, this.balance).executeOnExecutor(
-				super.getExec(), SERVICE_PARAMS);
+
+		this.accountLoading = new AccountLoading(this, this.balance);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+			this.accountLoading.executeOnExecutor(
+					super.getExec(), SERVICE_PARAMS);
+		else
+			this.accountLoading.execute(SERVICE_PARAMS);
 
 		// -- ImageButonMB --
 		ImageButton btnMB = (ImageButton) findViewById(R.id.imageButtonMbConta);
@@ -127,6 +142,21 @@ public class AccountActivity extends BaseActivity {
 			}
 		});
 
+		Button btnDevConta = (Button) findViewById(R.id.buttonDevolucaoConta);
+		btnDevConta.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				final ProgressDialog pd = showProgressDialog("A enviar email",
+						"Envio de email cancelado");
+				new Runnable() {
+					@Override
+					public void run() {
+						sendEmail();
+						pd.dismiss();
+					}
+				}.run();
+			}
+		});
 	}
 
 	@Override
@@ -167,8 +197,10 @@ public class AccountActivity extends BaseActivity {
 								public void onClick(DialogInterface dialog,
 										int whichButton) {
 									if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-										new GenerateReference(getBaseContext(),
-												showProgressDialog())
+										new GenerateReference(context,
+												showProgressDialog(
+														"A efectuar reserva",
+														"Reserva cancelada"))
 												.executeOnExecutor(
 														getExec(),
 														dotToComma(String
@@ -179,8 +211,10 @@ public class AccountActivity extends BaseActivity {
 																		.getAccount()
 																		.getId()));
 									else
-										new GenerateReference(getBaseContext(),
-												showProgressDialog()).execute(dotToComma(String
+										new GenerateReference(context,
+												showProgressDialog(
+														"A efectuar reserva",
+														"Reserva cancelada")).execute(dotToComma(String
 												.valueOf(montante))
 												+ "$"
 												+ String.valueOf(AccountSingleton
@@ -202,18 +236,60 @@ public class AccountActivity extends BaseActivity {
 
 	}
 
-	private ProgressDialog showProgressDialog() {
+	private ProgressDialog showProgressDialog(String title,
+			final String cancelMessage) {
 
-		this.progressDialog = ProgressDialog.show(this, "A efectuar reserva",
-				"Aguarde...", true, true, new OnCancelListener() {
+		this.progressDialog = ProgressDialog.show(this, title, "Aguarde...",
+				true, true, new OnCancelListener() {
 					@Override
 					public void onCancel(DialogInterface dialog) {
-						DisplayToast("TESTE");
+						DisplayToast(cancelMessage);
 						dialog.dismiss();
 					}
 				});
 
 		return this.progressDialog;
+	}
+
+	public void sendEmail() {
+
+		// credenciais
+		String username = "ipl.cantina.1213@gmail.com";
+		String password = "iplcantina1213";
+		Mail m = new Mail(username, password);
+		String userName = UserSingleton.getInstance().getUser().getName();
+		String userEmail = UserSingleton.getInstance().getUser().getEmail();
+
+		// corpo email
+		String[] to = { "ipl.cantina.1213@gmail.com" };
+		String from = userName + "(" + userEmail + ")"
+				+ "<ipl.cantina.1213@gmail.com>";
+		String subject = "Cantin@IPL - Pedido de devolução de dinheiro";
+		String emailBody = "Cara Cantin@IPL,\n "
+				+ "Eu "
+				+ userName
+				+ ", utilizador da vossa aplicação android, \n"
+				+ "vou deixar de utilizar a aplicação, e como ainda tenho saldo \n"
+				+ "disponível, nomeadamente " + balance.getText()
+				+ " euros, faço o\n"
+				+ " requerimento para que este me seja devolvido.\n\n"
+				+ "\n\nObrigado, " + userName;
+
+		m.setTo(to);
+		m.setFrom(from);
+		m.setSubject(subject);
+		m.setBody(emailBody);
+
+		try {
+			if (m.send()) {
+				DisplayToast("Email enviado corretamente.");
+			} else {
+				DisplayToast("Falha no envio do email.");
+			}
+		} catch (Exception e) {
+			DisplayToast("Existem problemas no envio de emails.");
+			Log.e("CantinaIPL", "Could not send email", e);
+		}
 	}
 
 	public void onClickSenhas(View view) {

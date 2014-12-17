@@ -112,10 +112,30 @@
         <activity
             android:name="pt.ipleiria.sas.mobile.cantinaipl.AccountActivity"
             android:label="@string/title_activity_account" >
+
+            <!-- Receives the search request. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <!-- No category needed, because the Intent will specify this class component -->
+            </intent-filter>
+            <!-- Points to searchable meta data. -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name="pt.ipleiria.sas.mobile.cantinaipl.ReservesActivity"
             android:label="@string/title_activity_reserves" >
+
+            <!-- Receives the search request. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <!-- No category needed, because the Intent will specify this class component -->
+            </intent-filter>
+            <!-- Points to searchable meta data. -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name="pt.ipleiria.sas.mobile.cantinaipl.ReserveDetailsActivity"

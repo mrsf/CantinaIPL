@@ -25,8 +25,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * Canteen List Activity. This class allows you to fill the view with the list
- * of canteens.
+ * <b>Canteen List Activity.</b>
+ * 
+ * <p>
+ * This class allows you to fill the view with the list of canteens.
+ * </p>
  * 
  * @author Márcio Francisco and Mário Correia
  * @version 2013.0627
@@ -39,7 +42,6 @@ public class CanteensActivity extends ClosableActivity implements
 	// [REGION] Constants
 
 	private static final String TAG = "CANTEENS_ACTIVITY";
-	private static final String SERVICE_METHOD = "/ipl.cantina.1213@gmail.com";
 
 	// [ENDREGION] Constants
 
@@ -60,6 +62,8 @@ public class CanteensActivity extends ClosableActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_canteens);
+		
+		if (UserSingleton.getInstance().getUser() != null) {
 
 		User user = UserSingleton.getInstance().getUser();
 		EventSingleton.getInstance().getEvent()
@@ -77,6 +81,9 @@ public class CanteensActivity extends ClosableActivity implements
 			this.canteenListView
 					.setAdapter((CanteenListAdapter) savedInstanceState
 							.getParcelable("adapter"));
+		
+		} else
+			startActivity(new Intent(this, AuthenticationActivity.class));
 	}
 
 	public void onMapClick(View v) {
@@ -177,15 +184,18 @@ public class CanteensActivity extends ClosableActivity implements
 			this.canteensLoading = new CanteensLoading(this, this.canteenList,
 					this.canteenListAdapter);
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-				this.canteensLoading.executeOnExecutor(super.getExec(),
-						SERVICE_METHOD);
+				this.canteensLoading.executeOnExecutor(super.getExec(), "/"
+						+ UserSingleton.getInstance().getUser().getUserName()
+						+ "$ipl.cantina.1213@gmail.com");
 			else
-				this.canteensLoading.execute(SERVICE_METHOD);
-			/*BaseActivity
-			.getOldExec()
-			.executeOnExecutor(
-					(AsyncTask<String, Canteen, LinkedList<Canteen>>) this.canteensLoading,
-					(Object) SERVICE_METHOD);*/
+				this.canteensLoading.execute("/"
+						+ UserSingleton.getInstance().getUser().getUserName()
+						+ "$ipl.cantina.1213@gmail.com");
+			/*
+			 * BaseActivity .getOldExec() .executeOnExecutor( (AsyncTask<String,
+			 * Canteen, LinkedList<Canteen>>) this.canteensLoading, (Object)
+			 * SERVICE_METHOD);
+			 */
 		}
 
 	}

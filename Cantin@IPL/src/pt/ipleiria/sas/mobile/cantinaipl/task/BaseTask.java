@@ -14,7 +14,7 @@ abstract class BaseTask<Params, Progress, Result> extends
 
 	// [REGION] Constants
 
-	private static final String SERVER_URL = "http://25.42.150.3/";
+	private static final String SERVER_URL = "http://192.168.79.128/";
 	private static final String SERVICE_URL = SERVER_URL
 			+ "CantinaIplService.svc/";
 	private static final String SERVICE_APP_PASSWORD = "ipl.cantina.1213@gmail.com";

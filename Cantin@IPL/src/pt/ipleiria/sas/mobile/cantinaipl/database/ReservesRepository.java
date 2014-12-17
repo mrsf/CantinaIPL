@@ -153,7 +153,7 @@ public class ReservesRepository extends CantinaIplRepository {
 					values.put(CantinaIplDBContract.ReserveBase.PRICE,
 							reserve.getPrice());
 					values.put(CantinaIplDBContract.ReserveBase.ISVALID,
-							reserve.isValid());
+							reserve.isUsed());
 					values.put(CantinaIplDBContract.ReserveBase.USER_LOGIN,
 							reserve.getUserName());
 					values.put(CantinaIplDBContract.ReserveBase.MEAL_ID,

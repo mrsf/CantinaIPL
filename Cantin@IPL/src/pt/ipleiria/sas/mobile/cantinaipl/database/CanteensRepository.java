@@ -3,6 +3,7 @@ package pt.ipleiria.sas.mobile.cantinaipl.database;
 import java.util.LinkedList;
 
 import pt.ipleiria.sas.mobile.cantinaipl.model.Canteen;
+import pt.ipleiria.sas.mobile.cantinaipl.model.Meal;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -84,9 +85,15 @@ public class CanteensRepository extends CantinaIplRepository {
 
 	private long insertCanteen(Canteen canteen) throws SQLException {
 
+		for (Meal meal : canteen.getMeals())
+			if (MealCanteenRelation.insertMealByCanteenId(meal,
+					canteen.getId(), database()) == -1)
+				return -1;
+			else
+				continue;
+
 		ContentValues values = new ContentValues();
-		values.put(CantinaIplDBContract.CanteenBase.CANTEEN_ID,
-				canteen.getId());
+		values.put(CantinaIplDBContract.CanteenBase.CANTEEN_ID, canteen.getId());
 		values.put(CantinaIplDBContract.CanteenBase.NAME, canteen.getName());
 		values.put(CantinaIplDBContract.CanteenBase.ADDRESS,
 				canteen.getAddress());
@@ -139,7 +146,7 @@ public class CanteensRepository extends CantinaIplRepository {
 								.getString(5), cursor.getString(6), Double
 								.parseDouble(cursor.getString(7)), Double
 								.parseDouble(cursor.getString(8)), Boolean
-								.parseBoolean(cursor.getString(9))));
+								.parseBoolean(cursor.getString(9)), null));
 			} while (cursor.moveToNext());
 		}
 		cursor.close();

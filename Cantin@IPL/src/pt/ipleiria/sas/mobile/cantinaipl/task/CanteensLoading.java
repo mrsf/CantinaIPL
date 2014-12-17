@@ -6,8 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import pt.ipleiria.sas.mobile.cantinaipl.controller.CanteenListAdapter;
+import pt.ipleiria.sas.mobile.cantinaipl.controller.UserSingleton;
 import pt.ipleiria.sas.mobile.cantinaipl.database.CanteensRepository;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Canteen;
+import pt.ipleiria.sas.mobile.cantinaipl.model.Dish;
+import pt.ipleiria.sas.mobile.cantinaipl.model.Meal;
 
 import android.content.Context;
 import android.util.Log;
@@ -39,6 +42,8 @@ public class CanteensLoading extends
 	private final CanteenListAdapter canteenListAdapter;
 
 	private LinkedList<Canteen> canteenList;
+	private LinkedList<Meal> mealList;
+	private LinkedList<Dish> dishList;
 	private CanteensRepository canteensRepository;
 
 	// [ENDREGION] Variables
@@ -80,7 +85,63 @@ public class CanteensLoading extends
 
 					for (int i = 0; i < jsonArray.length(); i++) {
 						JSONObject jsonObject = jsonArray.getJSONObject(i);
+						this.mealList = new LinkedList<Meal>();
+						JSONArray jsonMealArray = jsonObject
+								.getJSONArray("Meals");
+						Log.i(TAG, "Number of meals elements: "
+								+ jsonMealArray.length());
 
+						for (int l = 0; l < jsonMealArray.length(); l++) {
+
+							JSONObject jsonMealObject = jsonMealArray
+									.getJSONObject(l);
+							this.dishList = new LinkedList<Dish>();
+							JSONArray jsonDishArray = jsonMealObject
+									.getJSONArray("Dishes");
+							Log.i(TAG, "Number of dishes elements: "
+									+ jsonDishArray.length());
+
+							for (int k = 0; k < jsonDishArray.length(); k++) {
+
+								JSONObject jsonDishObject = jsonDishArray
+										.getJSONObject(k);
+
+								String photo = ((jsonDishObject
+										.getString("Photo").equals("null")) ? jsonDishObject
+										.getString("Photo") : super
+										.getServerUrl()
+										+ jsonDishObject.getString("Photo"));
+
+								this.dishList.add(new Dish(jsonDishObject
+										.getInt("Id"), photo,
+										jsonDishObject
+												.getString("Description"),
+										jsonDishObject.getString("Name"),
+										jsonDishObject.getDouble("Price"),
+										jsonDishObject.getString("Type"),
+										jsonDishObject
+												.getDouble("MyRating")));
+
+							}
+
+							this.mealList
+									.add(new Meal(
+											jsonMealObject.getInt("Id"),
+											jsonMealObject
+													.getString("Date"),
+											jsonMealObject
+													.getBoolean("Refeicao"),
+											jsonMealObject
+													.getString("Type"),
+											dishList,
+											(!UserSingleton.getInstance()
+													.getUser().getType() ? jsonMealObject
+													.getDouble("StudentPrice")
+													: jsonMealObject
+															.getDouble("EmployeePrice"))));
+
+						}
+						
 						String photo = ((jsonObject.getString("Photo")
 								.equals("null")) ? jsonObject
 								.getString("Photo") : super.getServerUrl()
@@ -94,7 +155,7 @@ public class CanteensLoading extends
 										.getString("Campus"), photo, jsonObject
 										.getDouble("Latitude"), jsonObject
 										.getDouble("Longitude"), jsonObject
-										.getBoolean("Active")));
+										.getBoolean("Active"), new LinkedList<Meal>()));
 					}
 				} catch (Exception e) {
 					Log.d(TAG, e.getLocalizedMessage());

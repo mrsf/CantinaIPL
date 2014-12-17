@@ -20,6 +20,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setPreferenceScreen(createPreferenceHierarchy());
+		setTitle("Configurações");
 	}
 
 	private PreferenceScreen createPreferenceHierarchy() {

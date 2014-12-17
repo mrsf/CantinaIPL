@@ -47,6 +47,10 @@ public class CantinaIplApplication extends Application {
 		return this.appConfigurations.getBoolean(
 				"checkbox_reserves_preference", false);
 	}
+	
+	public String isMealAlertActive() {
+		return this.appConfigurations.getString("list_preference", "0");
+	}
 
 	public boolean isEmailsActive() {
 		return this.appConfigurations.getBoolean("checkbox_email_preference",

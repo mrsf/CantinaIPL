@@ -46,7 +46,7 @@ public class UserActivity extends ClosableActivity {
 	private EditText schoolEdit;
 	private String schoolValue;
 	private EditText biEdit;
-	private String biValue;
+	private int biValue;
 	private EditText nifEdit;
 	private int nifValue;
 	private RadioGroup regimeRadioG;
@@ -113,7 +113,7 @@ public class UserActivity extends ClosableActivity {
 			courseValue = UserSingleton.getInstance().getUser().getCourse();
 			numberValue = UserSingleton.getInstance().getUser().getUserName();
 			schoolValue = UserSingleton.getInstance().getUser().getSchool();
-			biValue = biEdit.getText().toString();
+			biValue = Integer.parseInt(biEdit.getText().toString());
 			nifValue = Integer.parseInt(nifEdit.getText().toString());
 
 			new InsertUserTask().executeOnExecutor(getExec(), (Void) null);
@@ -200,10 +200,10 @@ public class UserActivity extends ClosableActivity {
 				usersRepository = new UsersRepository(getApplicationContext(),
 						false);
 				usersRepository.open();
-				usersRepository.insertUser(new User(user.getUserName(), biValue,
-						user.getName(), user.getCourse(), user.getRegime(), "",
-						nifValue, user.getEmail(), user.getType(), user
-								.isActive(), user.getSchool()));
+				usersRepository.insertUser(new User(user.getUserName(),
+						biValue, user.getName(), user.getCourse(), user
+								.getRegime(), "", nifValue, user.getEmail(),
+						user.getType(), user.isActive(), user.getSchool()));
 				usersRepository.close();
 
 				UserSingleton.getInstance().getUser().setBi(biValue);

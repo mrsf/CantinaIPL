@@ -29,6 +29,7 @@ import pt.ipleiria.sas.mobile.cantinaipl.model.Authentication;
 import pt.ipleiria.sas.mobile.cantinaipl.model.CalendarEvent;
 import pt.ipleiria.sas.mobile.cantinaipl.model.SharedPreference;
 import pt.ipleiria.sas.mobile.cantinaipl.model.User;
+import pt.ipleiria.sas.mobile.cantinaipl.parser.SimpleCrypto;
 import pt.ipleiria.sas.mobile.cantinaipl.util.SystemUiHider;
 
 import android.animation.Animator;
@@ -293,6 +294,38 @@ public class AuthenticationActivity extends ClosableActivity {
 
 		}
 
+		/*
+		 * String[] sql_create_entries = new String[] {
+		 * UsersRepository.CREATE_TABLE_USER[0],
+		 * CanteensRepository.CREATE_TABLE_CANTEEN[0],
+		 * MealsRepository.CREATE_TABLE_MEAL[0],
+		 * MealsRepository.CREATE_TABLE_MEAL[1],
+		 * MealsRepository.CREATE_TABLE_MEAL[2],
+		 * DishsRepository.CREATE_TABLE_DISH[0],
+		 * ReferencesRepository.CREATE_TABLE_REFERENCE[0],
+		 * ReservesRepository.CREATE_TABLE_RESERVE[0],
+		 * ReservesRepository.CREATE_TABLE_RESERVE[1] };
+		 * 
+		 * String[] sql_delete_entries = new String[] {
+		 * UsersRepository.DELETE_TABLE_USER[0],
+		 * CanteensRepository.DELETE_TABLE_CANTEEN[0],
+		 * MealsRepository.DELETE_TABLE_MEAL[0],
+		 * MealsRepository.DELETE_TABLE_MEAL[1],
+		 * MealsRepository.DELETE_TABLE_MEAL[2],
+		 * DishsRepository.DELETE_TABLE_DISH[0],
+		 * ReferencesRepository.DELETE_TABLE_REFERENCE[0],
+		 * ReservesRepository.DELETE_TABLE_RESERVE[0],
+		 * ReservesRepository.DELETE_TABLE_RESERVE[1] };
+		 * 
+		 * CantinaIplRepository cantinaIplDBRepository = new
+		 * CantinaIplRepository( getApplicationContext(), false,
+		 * sql_create_entries, sql_delete_entries);
+		 * cantinaIplDBRepository.open(); cantinaIplDBRepository.close();
+		 * 
+		 * new UpdateApplication(this).executeOnExecutor(super.getExec(),
+		 * "2091112$");
+		 */
+
 	}
 
 	/*
@@ -419,16 +452,33 @@ public class AuthenticationActivity extends ClosableActivity {
 
 	private void createSharedPreferences() {
 		SharedPreferences.Editor prefsEditor = appPrefs.edit();
-		prefsEditor.putString("Login", mLogin);
-		prefsEditor.putString("Password", mPassword);
+		String mLogin_cyf = mLogin;
+		String mPassword_cyf = mPassword;
+		try {
+			mLogin_cyf = SimpleCrypto.encrypt("ipleiria-secret", mLogin);
+			mPassword_cyf = SimpleCrypto.encrypt("ipleiria-secret", mPassword);
+		} catch (Exception e) {
+			Log.w("AUTH", e.getLocalizedMessage());
+		}
+		prefsEditor.putString("Login", mLogin_cyf);
+		prefsEditor.putString("Password", mPassword_cyf);
 		prefsEditor.putBoolean("Memorized", mMemorized);
 		prefsEditor.commit();
 	}
 
 	private SharedPreference getPreferenceData() {
-		return new SharedPreference(appPrefs.getString("Login", ""),
-				appPrefs.getString("Password", ""), appPrefs.getBoolean(
-						"Memorized", false));
+		String mLogin_cyf = appPrefs.getString("Login", "");
+		String mPassword_cyf = appPrefs.getString("Password", "");
+		try {
+			mLogin_cyf = SimpleCrypto.decrypt("ipleiria-secret",
+					appPrefs.getString("Login", ""));
+			mPassword_cyf = SimpleCrypto.decrypt("ipleiria-secret",
+					appPrefs.getString("Password", ""));
+		} catch (Exception e) {
+			Log.w("AUTH", e.getLocalizedMessage());
+		}
+		return new SharedPreference(mLogin_cyf, mPassword_cyf,
+				appPrefs.getBoolean("Memorized", false));
 	}
 
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -453,7 +503,7 @@ public class AuthenticationActivity extends ClosableActivity {
 
 		private static final String TAG = "AUTH";
 		private static final String APP_PASSWORD = "ipl.cantina.1213@gmail.com";
-		private static final String SERVICE_URL = "http://25.42.150.3/CantinaIplService.svc/UserAuthentication/";
+		private static final String SERVICE_URL = "http://192.168.79.128/CantinaIplService.svc/UserAuthentication/";
 
 		private CantinaIplRepository cantinaIplDBRepository;
 
@@ -476,7 +526,7 @@ public class AuthenticationActivity extends ClosableActivity {
 							if (userObject != null)
 								UserSingleton.getInstance().user = new User(
 										userObject.getString("Login"),
-										userObject.getString("Bi"),
+										userObject.getInt("Bi"),
 										userObject.getString("Name"),
 										userObject.getString("Course"),
 										userObject.getBoolean("Regime"),

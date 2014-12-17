@@ -89,7 +89,7 @@ public class MealsRepository extends CantinaIplRepository {
 		ContentValues values = new ContentValues();
 		values.put(CantinaIplDBContract.MealBase.MEAL_ID, meal.getId());
 		values.put(CantinaIplDBContract.MealBase.DATE, meal.getDate());
-		values.put(CantinaIplDBContract.MealBase.REFEICAO, meal.isRefeicao());
+		values.put(CantinaIplDBContract.MealBase.REFEICAO, meal.getRefeicao());
 		values.put(CantinaIplDBContract.MealBase.TYPE, meal.getType());
 		values.put(CantinaIplDBContract.MealBase.PRICE, meal.getPrice());
 		return database().insert(CantinaIplDBContract.MealBase.TABLE_NAME,

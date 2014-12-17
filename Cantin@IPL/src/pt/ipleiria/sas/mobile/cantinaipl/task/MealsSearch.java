@@ -8,59 +8,46 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import pt.ipleiria.sas.mobile.cantinaipl.controller.MealListAdapter;
+import android.content.Context;
+import android.util.Log;
+import android.widget.TextView;
+
+import pt.ipleiria.sas.mobile.cantinaipl.controller.SearchListAdapter;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.UserSingleton;
 import pt.ipleiria.sas.mobile.cantinaipl.database.MealsRepository;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Dish;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Meal;
 
-import android.content.Context;
-import android.util.Log;
-
-/**
- * <b>Class to loading the meals data.</b>
- * 
- * <p>
- * This class allows meals data loading. It can request data to web service or
- * read data stored on application database.
- * </p>
- * 
- * @author Márcio Francisco and Mário Correia
- * @version 2013.0610
- * @since 1.0
- * 
- */
-public class MealsLoading extends DataLoading<String, Meal, LinkedList<Meal>> {
+public class MealsSearch extends DataLoading<String, Meal, LinkedList<Meal>> {
 
 	// [REGION] Constants
 
-	// private static final Object LOCK = new Object();
-	private static final String TAG = "MEALS_LOADING";
+	private static final String TAG = "MEALS_SEARCH";
 	private static final String SERVICE_METHOD = getServiceUrl()
-			+ "/GetMealsByRefeicaoAndCanteenId";
+			+ "SearchMeal/";
 
 	// [ENDREGION] Constants
 
 	// [REGION] Variables
 
-	private final MealListAdapter mealListAdapter;
+	private final SearchListAdapter mealListAdapter;
 
 	private LinkedList<Meal> mealList;
 	private MealsRepository mealsRepository;
-
-	private int canteenId;
-	private int refeicao;
+	
+	private TextView listCount;
 
 	// [ENDREGION] Variables
 
 	// [REGION] Constructors
 
-	public MealsLoading(final Context context, LinkedList<Meal> mealList,
-			MealListAdapter mealListAdapter) {
+	public MealsSearch(final Context context, LinkedList<Meal> mealList,
+			SearchListAdapter mealListAdapter, TextView listCount) {
 		super(context);
 		this.mealList = mealList;
 		this.mealListAdapter = mealListAdapter;
 		this.mealsRepository = new MealsRepository(super.getContext(), false);
+		this.listCount = listCount;
 	}
 
 	// [ENDREGION] Constructors
@@ -74,20 +61,16 @@ public class MealsLoading extends DataLoading<String, Meal, LinkedList<Meal>> {
 
 		for (String param : params) {
 
-			getServiceParams(param);
-
-			// synchronized (LOCK) {
-			this.mealsRepository.open();
-			storedData = this.mealsRepository.getMealsByCanteenIdAndRefeicao(
-					canteenId, refeicao);
-			this.mealsRepository.close();
-			// }
+			mealsRepository.open();
+			storedData = mealsRepository.getMealsByName(param);
+			mealsRepository.close();
 
 			if (storedData.isEmpty() && super.isNetworkAvailable()) {
 
 				try {
 					JSONArray jsonArray = new JSONArray(
-							readJsonData(SERVICE_METHOD + param));
+							readJsonData(SERVICE_METHOD + param + "$"
+									+ super.getServiceAppPassword()));
 					Log.i(TAG, "Number of Meal elements: " + jsonArray.length());
 
 					for (int i = 0; i < jsonArray.length(); i++) {
@@ -165,30 +148,11 @@ public class MealsLoading extends DataLoading<String, Meal, LinkedList<Meal>> {
 
 		if (mealsResult != null) {
 			this.mealListAdapter.notifyDataSetChanged();
-
-			if (mealsResult != null && !mealsResult.isEmpty()) {
-				// synchronized (LOCK) {
-				this.mealsRepository.open();
-				this.mealsRepository.insertMeals(mealsResult, canteenId);
-				this.mealsRepository.close();
-				// }
-			}
+			listCount.setText(String.valueOf(mealListAdapter.getCount()) + " "
+					+ listCount.getText());
 		}
 	}
 
 	// [ENDREGION] Inherited_Methods
-
-	// [REGION] Methods
-
-	private void getServiceParams(String serviceParams) {
-
-		String[] paramsArray = serviceParams.split("\\$");
-		int position = paramsArray.length - 1;
-
-		this.refeicao = (paramsArray[position - 1].equals("false") ? 0 : 1);
-		this.canteenId = Integer.parseInt(paramsArray[position]);
-	}
-
-	// [ENDREGION] Methods
 
 }

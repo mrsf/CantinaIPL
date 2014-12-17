@@ -28,10 +28,10 @@ public class Reserve extends Observable implements Parcelable {
 	private String purchaseDate;
 	private String useDate;
 	private double price;
-	private boolean isValid;
+	private boolean used;
 	private String userName;
 	private int mealId;
-	private boolean isAccounted;
+	private boolean accounted;
 	private List<Dish> dishes;
 	private int canteenId;
 	private String type;
@@ -42,6 +42,7 @@ public class Reserve extends Observable implements Parcelable {
 
 	public Reserve() {
 		super();
+		this.dishes = new LinkedList<Dish>();
 	}
 
 	public Reserve(Parcel in) {
@@ -50,17 +51,17 @@ public class Reserve extends Observable implements Parcelable {
 	}
 
 	public Reserve(int id, String purchaseDate, String useDate, double price,
-			boolean isValid, String userName, int mealId, boolean isAccounted,
+			boolean used, String userName, int mealId, boolean accounted,
 			List<Dish> dishes, int canteenId, String type) {
 		super();
 		this.id = id;
 		this.purchaseDate = purchaseDate;
 		this.useDate = useDate;
 		this.price = price;
-		this.isValid = isValid;
+		this.used = used;
 		this.userName = userName;
 		this.mealId = mealId;
-		this.isAccounted = isAccounted;
+		this.accounted = accounted;
 		this.dishes = dishes;
 		this.canteenId = canteenId;
 		this.type = type;
@@ -112,12 +113,12 @@ public class Reserve extends Observable implements Parcelable {
 		super.notifyObservers();
 	}
 
-	public boolean isValid() {
-		return isValid;
+	public boolean isUsed() {
+		return used;
 	}
 
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setUsed(boolean used) {
+		this.used = used;
 		super.setChanged();
 		super.notifyObservers();
 	}
@@ -143,11 +144,11 @@ public class Reserve extends Observable implements Parcelable {
 	}
 
 	public boolean isAccounted() {
-		return isAccounted;
+		return accounted;
 	}
 
-	public void setAccounted(boolean isAccounted) {
-		this.isAccounted = isAccounted;
+	public void setAccounted(boolean accounted) {
+		this.accounted = accounted;
 		super.setChanged();
 		super.notifyObservers();
 	}
@@ -156,8 +157,8 @@ public class Reserve extends Observable implements Parcelable {
 		return dishes;
 	}
 
-	public void setDishes(List<Dish> dishes) {
-		this.dishes = dishes;
+	public void addDish(Dish dish) {
+		this.dishes.add(dish);
 		super.setChanged();
 		super.notifyObservers();
 	}
@@ -197,10 +198,10 @@ public class Reserve extends Observable implements Parcelable {
 		dest.writeString(this.purchaseDate);
 		dest.writeString(this.useDate);
 		dest.writeDouble(this.price);
-		dest.writeInt(this.isValid ? 1 : 0);
+		dest.writeInt(this.used ? 1 : 0);
 		dest.writeString(this.userName);
 		dest.writeInt(this.mealId);
-		dest.writeInt(this.isAccounted ? 1 : 0);
+		dest.writeInt(this.accounted ? 1 : 0);
 		dest.writeList(this.dishes);
 		dest.writeInt(this.canteenId);
 		dest.writeString(this.type);
@@ -211,10 +212,10 @@ public class Reserve extends Observable implements Parcelable {
 		this.purchaseDate = in.readString();
 		this.useDate = in.readString();
 		this.price = in.readDouble();
-		this.isValid = (in.readInt() == 1 ? true : false);
+		this.used = (in.readInt() == 1 ? true : false);
 		this.userName = in.readString();
 		this.mealId = in.readInt();
-		this.isAccounted = (in.readInt() == 1 ? true : false);
+		this.accounted = (in.readInt() == 1 ? true : false);
 		this.dishes = new LinkedList<Dish>();
 		in.readList(this.dishes, Dish.class.getClassLoader());
 		this.canteenId = in.readInt();

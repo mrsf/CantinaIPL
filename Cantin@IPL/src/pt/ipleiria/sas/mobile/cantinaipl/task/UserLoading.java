@@ -45,7 +45,7 @@ public class UserLoading extends AsyncTask<String, User, User> {
 
 					UserSingleton.getInstance().user = new User(
 							jsonObject.getString("Login"),
-							jsonObject.getString("Bi"),
+							jsonObject.getInt("Bi"),
 							jsonObject.getString("Name"),
 							jsonObject.getString("Course"),
 							jsonObject.getBoolean("Regime"),

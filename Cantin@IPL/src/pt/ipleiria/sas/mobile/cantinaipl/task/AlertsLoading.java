@@ -37,7 +37,7 @@ public class AlertsLoading extends AsyncTask<String, Alert, LinkedList<Alert>> {
 	// [REGION] Constants
 
 	private static final String TAG = "ALERTS_LOADING";
-	private static final String SERVICE_URL = "http://192.168.246.25/CantinaIplService.svc";
+	private static final String SERVICE_URL = "http://192.168.79.128/CantinaIplService.svc";
 
 	// [ENDREGION] Constants
 

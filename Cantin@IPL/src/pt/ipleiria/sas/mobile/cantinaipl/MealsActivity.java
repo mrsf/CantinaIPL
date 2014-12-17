@@ -9,11 +9,13 @@ import pt.ipleiria.sas.mobile.cantinaipl.controller.HorizontalListView;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.MealListAdapter;
 import pt.ipleiria.sas.mobile.cantinaipl.controller.UserSingleton;
 import pt.ipleiria.sas.mobile.cantinaipl.model.Meal;
+import pt.ipleiria.sas.mobile.cantinaipl.task.BestMealsLoading;
 import pt.ipleiria.sas.mobile.cantinaipl.task.MealsLoading;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.TargetApi;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -30,10 +32,16 @@ import android.widget.TextView;
  */
 public class MealsActivity extends BaseActivity implements OnItemClickListener {
 
+	// [REGION] Constants
+
 	private static final String TAG = "MEALS_ACTIVITY";
 	private static final String SERVICE_METHOD = "/"
 			+ UserSingleton.getInstance().getUser().getUserName()
 			+ "$ipl.cantina.1213@gmail.com$";
+
+	// [ENDREGION] Constants
+
+	// [REGION] Fields
 
 	private HorizontalListView primaryGallery;
 	private MealListAdapter primaryMealListAdapter;
@@ -45,11 +53,18 @@ public class MealsActivity extends BaseActivity implements OnItemClickListener {
 	private LinkedList<Meal> secondaryMealList;
 	private MealsLoading secondaryMealsLoading;
 
+	private NotificationManager notificationManager;
+	private BestMealsLoading bestMealsLoading;
+
+	// [ENDREGION] Fields
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_meals);
+
+		this.notificationManager = null;
 
 		primaryGallery = (HorizontalListView) findViewById(R.id.primary_gallery);
 		primaryGallery.setOnItemClickListener(this);
@@ -73,6 +88,32 @@ public class MealsActivity extends BaseActivity implements OnItemClickListener {
 	}
 
 	private void populateLists(String canteenId) {
+
+		String alertRating = ((CantinaIplApplication) this
+				.getApplicationContext()).isMealAlertActive();
+		if (!alertRating.equals("0")) {
+			this.notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+			Log.i(TAG, "Thread to load meals data is running.");
+			this.bestMealsLoading = new BestMealsLoading(this,
+					this.notificationManager);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+				this.bestMealsLoading.executeOnExecutor(super.getExec(),
+						"GetMealsByRefeicaoAndCanteenIdAndRating/"
+								+ UserSingleton.getInstance().getUser()
+										.getUserName()
+								+ "$ipl.cantina.1213@gmail.com$false$"
+								+ canteenId + "$" + alertRating,
+						"GetMealsByRefeicaoAndCanteenIdAndRating/"
+								+ UserSingleton.getInstance().getUser()
+										.getUserName()
+								+ "$ipl.cantina.1213@gmail.com$true$"
+								+ canteenId + "$" + alertRating);
+			}
+			/*
+			 * else this.alertLoading
+			 * .execute("/GetAlerts/ipl.cantina.1213@gmail.com");
+			 */
+		}
 
 		DisplayMetrics dm = getResources().getDisplayMetrics();
 

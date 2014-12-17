@@ -44,6 +44,17 @@ abstract class DataLoading<Params, Progress, Result> extends
 
 	// [REGION] Methods
 
+	/**
+	 * <b>Method to get json data</b>
+	 * 
+	 * <p>
+	 * This method allows get the json data of a server url.
+	 * </p>
+	 * 
+	 * @param serviceUrl
+	 *            Server url to get the data.
+	 * @return A string with json text.
+	 */
 	public String readJsonData(String serviceUrl) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -75,6 +86,15 @@ abstract class DataLoading<Params, Progress, Result> extends
 		return stringBuilder.toString();
 	}
 
+	/**
+	 * <b>Method to verify network state</b>
+	 * 
+	 * <p>
+	 * This method allow verify is the network is available or not.
+	 * </p>
+	 * 
+	 * @return true if network available otherwise false.
+	 */
 	public boolean isNetworkAvailable() {
 
 		ConnectivityManager connectivityManager = (ConnectivityManager) super

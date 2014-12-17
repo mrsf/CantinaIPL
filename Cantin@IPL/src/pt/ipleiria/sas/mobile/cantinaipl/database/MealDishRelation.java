@@ -2,9 +2,11 @@ package pt.ipleiria.sas.mobile.cantinaipl.database;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import pt.ipleiria.sas.mobile.cantinaipl.model.Dish;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +17,7 @@ import android.database.sqlite.SQLiteDatabase;
  * @since 1.0
  * 
  */
+@SuppressLint("DefaultLocale")
 class MealDishRelation {
 
 	// [REGION] SQL_Statements
@@ -85,7 +88,9 @@ class MealDishRelation {
 
 		if (cursor.moveToFirst()) {
 			do {
-				if (!cursor.getString(3).contains(name))
+				if (!(cursor.getString(3).toLowerCase()
+						.contains(name.toLowerCase()) || cursor.getString(2)
+						.toLowerCase().contains(name.toLowerCase())))
 					continue;
 				else
 					dishList.add(new Dish(
